@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 import cl.duoc.api.model.entities.Receta;
 import cl.duoc.api.model.dto.RecetaDTO;
 import cl.duoc.api.model.repositories.RecetaRepository;
-import lombok.extern.log4j.Log4j2;
+// import lombok.extern.log4j.Log4j2;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Log4j2
+// @Log4j2
 public class RecetaService {
 
     @Autowired
