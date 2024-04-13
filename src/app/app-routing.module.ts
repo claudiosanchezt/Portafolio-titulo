@@ -39,8 +39,15 @@ const routes: Routes = [
     path: 'comidas-aleatorias',
     loadChildren: () => import('./comidas-aleatorias/comidas-aleatorias.module').then( m => m.ComidasAleatoriasPageModule)
   },
+  {
+    path: 'paises/chile',
+    loadChildren: () => import('./paises/chile/chile.module').then( m => m.ChilePageModule)
+  },
+
+
   // esto redirige a las pags que no estén autenticadas con el guard
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'home' },
+
 ];
 
 @NgModule({

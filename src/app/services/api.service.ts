@@ -64,6 +64,20 @@ export class CategoriaService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
+export class CategoriaChile {
+
+  private apiUrl = 'http://localhost:4000/recetas-chile';
+
+  constructor(private http: HttpClient) { }
+
+  getCategorias() {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+}
+
 // desde el localhost para obtener los datos de cada país
 @Injectable({
   providedIn: 'root'
@@ -85,14 +99,120 @@ export class FlagService {
 })
 export class PostreService {
 
-  private apiUrl = 'http://localhost:8081/recetas';
+  private apiUrl = 'http://localhost:4000/categorias-postres';
 
   constructor(private http: HttpClient) { }
 
   getCategorias() {
     return this.http.get<any[]>(this.apiUrl);
   }
+
+  
 }
+
+// desde el localhost para obtener los datos de las recetas de chile
+@Injectable({
+  providedIn: 'root'
+})
+export class recetasChile {
+
+  private apiUrl = 'http://localhost:4000/recetas-chile';
+
+  constructor(private http: HttpClient) { }
+
+  getCategorias() {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  
+}
+
+// desde el localhost para obtener los datos de las recetas de Gran bretaña
+@Injectable({
+  providedIn: 'root'
+})
+export class recetasGB {
+
+  private apiUrl = 'http://localhost:4000/recetas-chile';
+
+  constructor(private http: HttpClient) { }
+
+  getCategorias() {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  
+}
+
+// desde el localhost para obtener los datos de las recetas de USA
+@Injectable({
+  providedIn: 'root'
+})
+export class recetasUsa {
+
+  private apiUrl = 'http://localhost:4000/recetas-chile';
+
+  constructor(private http: HttpClient) { }
+
+  getCategorias() {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  
+}
+
+// desde el localhost para obtener los datos de las recetas de Canada
+@Injectable({
+  providedIn: 'root'
+})
+export class recetasCanada {
+
+  private apiUrl = 'http://localhost:4000/recetas-chile';
+
+  constructor(private http: HttpClient) { }
+
+  getCategorias() {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  
+}
+
+// desde el localhost para obtener los datos de las recetas de Mexico
+@Injectable({
+  providedIn: 'root'
+})
+export class recetasMexico {
+
+  private apiUrl = 'http://localhost:4000/recetas-chile';
+
+  constructor(private http: HttpClient) { }
+
+  getCategorias() {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  
+}
+
+// desde el localhost para obtener los datos de las recetas de Argentina
+@Injectable({
+  providedIn: 'root'
+})
+export class recetasArgentina {
+
+  private apiUrl = 'http://localhost:4000/recetas-chile';
+
+  constructor(private http: HttpClient) { }
+
+  getCategorias() {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  
+}
+
+
 
 // para desplegar usuarios destacados jaja
 @Injectable({
