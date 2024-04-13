@@ -55,7 +55,7 @@ export class MealService3 {
 })
 export class CategoriaService {
 
-  private apiUrl = 'http://localhost:8081/categorias';
+  private apiUrl = 'http://localhost:4000/categorias';
 
   constructor(private http: HttpClient) { }
 
@@ -70,7 +70,7 @@ export class CategoriaService {
 })
 export class FlagService {
 
-  private apiUrl = 'http://localhost:8081/paises';
+  private apiUrl = 'http://localhost:4000/paises';
 
   constructor(private http: HttpClient) { }
 
@@ -100,7 +100,7 @@ export class PostreService {
 })
 export class UsuarioService {
 
-  private apiUrl = 'http://localhost:8081/usuarios';
+  private apiUrl = 'http://localhost:4000/usuarioejemplo?page=1';
 
   constructor(private http: HttpClient) { }
 
