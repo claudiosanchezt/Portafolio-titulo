@@ -92,6 +92,7 @@ const getReceta = async (req, res) => {
             recetas_del_mundo.pais_receta, 
             recetas_del_mundo.preparacion_receta, 
             recetas_del_mundo.fecha_creacion, 
+            recetas_del_mundo.categoria,
             recetas_del_mundo.url_imagen_receta, 
             usuarios.nombres as "creado_por" 
             FROM recetas_del_mundo
@@ -100,7 +101,7 @@ const getReceta = async (req, res) => {
         // console.log(result);
          // Verificar si hay resultados
          if (result.length === 0) {
-            return res.status(404).json({ message: "No hay más recetas disponibles." });
+            return res.status(404).json({ message: "La receta no se encuentra disponible." });
         }
         res.json(result);
     } catch (error) {
@@ -158,12 +159,12 @@ const updateReceta = async (req, res) => {
 
     try {
         const { id } = req.params;
-        const { nombre_receta, ingrediente_receta, pais_receta, preparacion_receta, id_user } = req.body;
+        const { nombre_receta, ingrediente_receta, pais_receta, categoria, preparacion_receta, id_user } = req.body;
         if (nombre_receta == undefined || ingrediente_receta == undefined) {
             return res.status(400).json({ message: "Bad Request, Por favor, completar los datos." })
         }
         const receta = {
-            nombre_receta, ingrediente_receta, pais_receta, preparacion_receta, id_user
+            nombre_receta, ingrediente_receta, pais_receta, categoria, preparacion_receta, id_user
         }
 
         const connection = await getConnection();
