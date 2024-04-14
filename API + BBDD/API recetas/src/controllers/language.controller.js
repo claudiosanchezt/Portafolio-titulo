@@ -1,7 +1,7 @@
 import { getConnection } from "./../database/database"
 
 // PARA OBTENER LOS RESULTADOS
-const getLanguages = async (req, res) => {
+const getRecetas = async (req, res) => {
 
     try {
         const connection = await getConnection();
@@ -15,6 +15,7 @@ const getLanguages = async (req, res) => {
         recetas_del_mundo.preparacion_receta, 
         recetas_del_mundo.fecha_creacion, 
         recetas_del_mundo.url_imagen_receta, 
+        recetas_del_mundo.categoria,
         usuarios.nombres as "creado_por" 
         FROM recetas_del_mundo
         INNER JOIN usuarios ON recetas_del_mundo.id_user = usuarios.id_user;`);
@@ -75,10 +76,8 @@ const getCategorias = async (req, res) => {
     }
 };
 
-
-
 // PARA OBTENERLOS POR id
-const getLanguage = async (req, res) => {
+const getReceta = async (req, res) => {
 
     try {
         console.log(req.params)
@@ -113,19 +112,17 @@ const getLanguage = async (req, res) => {
 
 
 // PARA AÑADIR ELEMENTOS
-const addLanguage = async (req, res) => {
+const addReceta = async (req, res) => {
 
     try {
-        const { nombre_receta, ingrediente_receta, pais_receta, preparacion_receta, id_user } = req.body;
-        // console.log(banda)
-        // console.log(disco)
+        const { nombre_receta, ingrediente_receta, pais_receta, preparacion_receta, categoria, id_user } = req.body;
 
         if (nombre_receta == undefined || ingrediente_receta == undefined) {
             res.status(400).json({ message: "Bad Request, Por favor, completa los datos." })
         }
 
         const receta = {
-            nombre_receta, ingrediente_receta, pais_receta, preparacion_receta, id_user
+            nombre_receta, ingrediente_receta, pais_receta, preparacion_receta, categoria, id_user
         }
 
         const connection = await getConnection();
@@ -137,7 +134,7 @@ const addLanguage = async (req, res) => {
     }
 };
 // PARA ELIMINAR ELEMENTOS
-const deleteLanguage = async (req, res) => {
+const deleteReceta = async (req, res) => {
     try {
         const { id } = req.params;
         const connection = await getConnection();
@@ -157,7 +154,7 @@ const deleteLanguage = async (req, res) => {
 };
 
 // PARA ACTUALIZAR ELEMENTOS
-const updateLanguage = async (req, res) => {
+const updateReceta = async (req, res) => {
 
     try {
         const { id } = req.params;
@@ -187,7 +184,7 @@ const updateLanguage = async (req, res) => {
     
 
 // PARA OBTENERLOS POR pais = chile
-const getLanguagecl = async (req, res) => {
+const getRecetaCL = async (req, res) => {
 
     try {
         console.log(req.params)
@@ -216,7 +213,7 @@ const getLanguagecl = async (req, res) => {
 };
 
 // PARA OBTENERLOS POR pais = Estados Unidos
-const getLanguageusa = async (req, res) => {
+const getRecetaUSA = async (req, res) => {
 
     try {
         console.log(req.params)
@@ -244,7 +241,7 @@ const getLanguageusa = async (req, res) => {
     }
 };
 // PARA OBTENERLOS POR pais = Gran Bretaña
-const getLanguagegb = async (req, res) => {
+const getRecetaGB = async (req, res) => {
 
     try {
         console.log(req.params)
@@ -272,7 +269,7 @@ const getLanguagegb = async (req, res) => {
     }
 };
 // PARA OBTENERLOS POR pais = chile
-const getLanguagecanada = async (req, res) => {
+const getRecetaCA = async (req, res) => {
 
     try {
         console.log(req.params)
@@ -300,7 +297,7 @@ const getLanguagecanada = async (req, res) => {
     }
 };
 // PARA OBTENERLOS POR pais = chile
-const getLanguage_es = async (req, res) => {
+const getRecetaES = async (req, res) => {
 
     try {
         console.log(req.params)
@@ -328,7 +325,7 @@ const getLanguage_es = async (req, res) => {
     }
 };
 // PARA OBTENERLOS POR pais = chile
-const getLanguagemx = async (req, res) => {
+const getRecetaMX = async (req, res) => {
 
     try {
         console.log(req.params)
@@ -356,7 +353,7 @@ const getLanguagemx = async (req, res) => {
     }
 };
 // PARA OBTENERLOS POR pais = chile
-const getLanguageArgentina = async (req, res) => {
+const getReceta_ARG = async (req, res) => {
 
     try {
         console.log(req.params)
@@ -562,22 +559,17 @@ const deleteUsuario = async (req, res) => {
 
 
 export const methods = {
-    // GET
-    getLanguages, getLanguage, getLanguagecl, getLanguageusa, getLanguagegb, getLanguagecanada, getLanguage_es, getLanguagemx, getLanguageArgentina,
+    // GET 
+    getRecetas, getReceta, getRecetaCL, getRecetaUSA, getRecetaGB, getRecetaCA, getRecetaES, getRecetaMX, getReceta_ARG, getPaises,
+    // CATEGORIAS
+     getCategorias, getPostres, getDesayuno,
     // POST
-    addLanguage,
+    addReceta,
     // PUT
-    updateLanguage,
+    updateReceta,
     // DELETE
-    deleteLanguage,
+    deleteReceta,
     // gestión usuarios
-    getUser,
-    ejemploUserPaginado,
-    addUsuario,
-    updateUsuario,
-    deleteUsuario,
-    getPaises,
-    getCategorias,
-    getPostres,
-    getDesayuno
+    getUser, ejemploUserPaginado, addUsuario, updateUsuario, deleteUsuario,
+    
 };
