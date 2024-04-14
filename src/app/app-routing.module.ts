@@ -43,8 +43,27 @@ const routes: Routes = [
     path: 'paises/chile',
     loadChildren: () => import('./paises/chile/chile.module').then( m => m.ChilePageModule)
   },
-
-
+  {
+    path: 'paises/argentina',
+    loadChildren: () => import('./paises/argentina/argentina.module').then( m => m.ArgentinaPageModule)
+  },
+  {
+    path: 'paises/mexico',
+    loadChildren: () => import('./paises/mexico/mexico.module').then( m => m.MexicoPageModule)
+  },
+  {
+    path: 'paises/gran-bretana',
+    loadChildren: () => import('./paises/gran-bretana/gran-bretana.module').then( m => m.GranBretanaPageModule)
+  },
+  {
+    path: 'paises/espana',
+    loadChildren: () => import('./paises/espana/espana.module').then( m => m.EspanaPageModule)
+  },
+  {
+    path: 'paises/canada',
+    loadChildren: () => import('./paises/canada/canada.module').then( m => m.CanadaPageModule)
+  },
+  
   // esto redirige a las pags que no estén autenticadas con el guard
   { path: '**', redirectTo: 'home' },
 

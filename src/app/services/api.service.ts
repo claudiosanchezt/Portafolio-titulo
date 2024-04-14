@@ -201,7 +201,7 @@ export class recetasMexico {
 })
 export class recetasArgentina {
 
-  private apiUrl = 'http://localhost:4000/recetas-chile';
+  private apiUrl = 'http://localhost:4000/recetas-argentina';
 
   constructor(private http: HttpClient) { }
 
