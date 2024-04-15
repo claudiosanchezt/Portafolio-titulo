@@ -44,3 +44,5 @@ router.delete("/usuario"); // http://localhost:4000/usuario
 
 
 export default router;
+
+module.exports = router

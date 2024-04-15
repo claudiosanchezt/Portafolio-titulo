@@ -1,11 +1,14 @@
 // routes - rutas
-import LanguageRoutes from "./routes/language.routes"
-import express from "express";
-import morgan from "morgan";
+// import LanguageRoutes from "./routes/language.routes"
+const LanguageRoutes = require('./routes/language.routes');
+const express = require('express')
+const morgan = require ('morgan')
+// import express from "express";
+// import morgan from "morgan";
 const app=express(); //ejecu express
 const cors = require('cors')
 // settings
-app.set("port", 4000);
+app.set("port", 3000);
 // middleware
 app.use(morgan("dev"));
 app.use(cors(
