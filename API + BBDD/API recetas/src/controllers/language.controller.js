@@ -25,7 +25,7 @@ const getRecetas = async (req, res) => {
             console.log("No hay más resultados disponibles.");
             return res.status(404).json({ message: "No hay más resultados disponibles." });
         }
-        console.log(result); // Este es el mensaje que se desplegará en la consola
+        // console.log(result);
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -68,7 +68,7 @@ const getCategorias = async (req, res) => {
         //     console.log("No hay más resultados disponibles.");
         //     return res.status(404).json({ message: "No hay más resultados disponibles." });
         // }
-        console.log(result); // Este es el mensaje que se desplegará en la consola
+        // console.log(result);
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -116,11 +116,11 @@ const getReceta = async (req, res) => {
 const addReceta = async (req, res) => {
 
     try {
-        const { nombre_receta, ingrediente_receta, pais_receta, preparacion_receta, categoria, id_user } = req.body;
+        const {nombre_receta, ingrediente_receta, pais_receta, preparacion_receta, categoria, id_user} = req.body;
 
-        if (nombre_receta == undefined || ingrediente_receta == undefined) {
-            res.status(400).json({ message: "Bad Request, Por favor, completa los datos." })
-        }
+        // if (nombre_receta == undefined || ingrediente_receta == undefined) {
+        //     return res.status(400).json({ message: "Bad Request, Por favor, completa los datos." })
+        // }
 
         const receta = {
             nombre_receta, ingrediente_receta, pais_receta, preparacion_receta, categoria, id_user
