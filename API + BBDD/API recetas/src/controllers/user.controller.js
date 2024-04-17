@@ -11,6 +11,10 @@ const getUser = async (req, res) => {
         const connection = await getConnection();
         const result = await connection.query("SELECT id_user,nombres,user,fecha_creacion FROM usuarios");
         // console.log(result);
+        // Verificar si hay resultados
+        if (result.length === 0) {
+            return res.status(404).json({ message: "La receta no se encuentra disponible." });
+        }
         res.json(result);
     } catch (error) {
         res.status(500);
