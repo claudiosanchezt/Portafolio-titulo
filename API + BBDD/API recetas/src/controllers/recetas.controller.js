@@ -10,7 +10,7 @@ const getRecetas = async (req, res) => {
         recetas_del_mundo.id_receta, 
         recetas_del_mundo.nombre_receta, 
         recetas_del_mundo.ingrediente_receta, 
-        recetas_del_mundo.Año, 
+        recetas_del_mundo.anio, 
         recetas_del_mundo.pais_receta, 
         recetas_del_mundo.preparacion_receta, 
         recetas_del_mundo.fecha_creacion, 
@@ -43,10 +43,10 @@ const getPaises = async (req, res) => {
         `SELECT DISTINCT pais_receta FROM recetas_del_mundo;`);
         
         // Verificar si hay resultados
-        // if (result.length === 0) {
-        //     console.log("No hay más resultados disponibles.");
-        //     return res.status(404).json({ message: "No hay más resultados disponibles." });
-        // }
+        if (result.length === 0) {
+            console.log("No hay más resultados disponibles.");
+            return res.status(404).json({ message: "No hay más resultados disponibles." });
+        }
         // console.log(result);
         res.json(result);
     } catch (error) {
@@ -64,11 +64,11 @@ const getCategorias = async (req, res) => {
         `SELECT DISTINCT categoria FROM recetas_del_mundo;`);
         
         // Verificar si hay resultados
-        // if (result.length === 0) {
-        //     console.log("No hay más resultados disponibles.");
-        //     return res.status(404).json({ message: "No hay más resultados disponibles." });
-        // }
-        // console.log(result);
+        if (result.length === 0) {
+            console.log("No hay más resultados disponibles.");
+            return res.status(404).json({ message: "No hay más resultados disponibles." });
+        }
+        console.log(result);
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -88,7 +88,7 @@ const getReceta = async (req, res) => {
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
-            recetas_del_mundo.Año, 
+            recetas_del_mundo.anio, 
             recetas_del_mundo.pais_receta, 
             recetas_del_mundo.preparacion_receta, 
             recetas_del_mundo.fecha_creacion, 
@@ -196,7 +196,7 @@ const getRecetaCL = async (req, res) => {
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
-            recetas_del_mundo.Año, 
+            recetas_del_mundo.anio, 
             recetas_del_mundo.pais_receta, 
             recetas_del_mundo.preparacion_receta, 
             recetas_del_mundo.fecha_creacion, 
@@ -206,6 +206,10 @@ const getRecetaCL = async (req, res) => {
             INNER JOIN usuarios ON recetas_del_mundo.id_user = usuarios.id_user
             WHERE recetas_del_mundo.pais_receta='chile';`);
         // console.log(result);
+        // Verificar si hay resultados
+        if (result.length === 0) {
+            return res.status(404).json({ message: "La receta no se encuentra disponible." });
+        }
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -225,7 +229,7 @@ const getRecetaUSA = async (req, res) => {
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
-            recetas_del_mundo.Año, 
+            recetas_del_mundo.anio, 
             recetas_del_mundo.pais_receta, 
             recetas_del_mundo.preparacion_receta, 
             recetas_del_mundo.fecha_creacion, 
@@ -235,6 +239,10 @@ const getRecetaUSA = async (req, res) => {
             INNER JOIN usuarios ON recetas_del_mundo.id_user = usuarios.id_user
             WHERE recetas_del_mundo.pais_receta = 'Estados Unidos';`);
         // console.log(result);
+        // Verificar si hay resultados
+        if (result.length === 0) {
+            return res.status(404).json({ message: "La receta no se encuentra disponible." });
+        }
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -253,7 +261,7 @@ const getRecetaGB = async (req, res) => {
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
-            recetas_del_mundo.Año, 
+            recetas_del_mundo.anio, 
             recetas_del_mundo.pais_receta, 
             recetas_del_mundo.preparacion_receta, 
             recetas_del_mundo.fecha_creacion, 
@@ -263,6 +271,10 @@ const getRecetaGB = async (req, res) => {
             INNER JOIN usuarios ON recetas_del_mundo.id_user = usuarios.id_user
             WHERE recetas_del_mundo.pais_receta='Gran Bretaña';`);
         // console.log(result);
+        // Verificar si hay resultados
+        if (result.length === 0) {
+            return res.status(404).json({ message: "La receta no se encuentra disponible." });
+        }
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -281,7 +293,7 @@ const getRecetaCA = async (req, res) => {
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
-            recetas_del_mundo.Año, 
+            recetas_del_mundo.anio, 
             recetas_del_mundo.pais_receta, 
             recetas_del_mundo.preparacion_receta, 
             recetas_del_mundo.fecha_creacion, 
@@ -291,6 +303,10 @@ const getRecetaCA = async (req, res) => {
             INNER JOIN usuarios ON recetas_del_mundo.id_user = usuarios.id_user
             WHERE recetas_del_mundo.pais_receta='Canada';`);
         // console.log(result);
+        // Verificar si hay resultados
+        if (result.length === 0) {
+            return res.status(404).json({ message: "La receta no se encuentra disponible." });
+        }
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -309,7 +325,7 @@ const getRecetaES = async (req, res) => {
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
-            recetas_del_mundo.Año, 
+            recetas_del_mundo.anio, 
             recetas_del_mundo.pais_receta, 
             recetas_del_mundo.preparacion_receta, 
             recetas_del_mundo.fecha_creacion, 
@@ -319,6 +335,10 @@ const getRecetaES = async (req, res) => {
             INNER JOIN usuarios ON recetas_del_mundo.id_user = usuarios.id_user
             WHERE recetas_del_mundo.pais_receta='españa';`);
         // console.log(result);
+        // Verificar si hay resultados
+        if (result.length === 0) {
+            return res.status(404).json({ message: "La receta no se encuentra disponible." });
+        }
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -337,7 +357,7 @@ const getRecetaMX = async (req, res) => {
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
-            recetas_del_mundo.Año, 
+            recetas_del_mundo.anio, 
             recetas_del_mundo.pais_receta, 
             recetas_del_mundo.preparacion_receta, 
             recetas_del_mundo.fecha_creacion, 
@@ -347,6 +367,10 @@ const getRecetaMX = async (req, res) => {
             INNER JOIN usuarios ON recetas_del_mundo.id_user = usuarios.id_user
             WHERE recetas_del_mundo.pais_receta='Mexico';`);
         // console.log(result);
+        // Verificar si hay resultados
+        if (result.length === 0) {
+            return res.status(404).json({ message: "La receta no se encuentra disponible." });
+        }
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -365,7 +389,7 @@ const getReceta_ARG = async (req, res) => {
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
-            recetas_del_mundo.Año, 
+            recetas_del_mundo.anio, 
             recetas_del_mundo.pais_receta, 
             recetas_del_mundo.preparacion_receta, 
             recetas_del_mundo.fecha_creacion, 
@@ -375,6 +399,10 @@ const getReceta_ARG = async (req, res) => {
             INNER JOIN usuarios ON recetas_del_mundo.id_user = usuarios.id_user
             WHERE recetas_del_mundo.pais_receta='Argentina';`);
         // console.log(result);
+        // Verificar si hay resultados
+        if (result.length === 0) {
+            return res.status(404).json({ message: "La receta no se encuentra disponible." });
+        }
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -382,7 +410,7 @@ const getReceta_ARG = async (req, res) => {
     }
 };
 // =====================================================================
-                        // GESTION DE CATEGORIAS COMO POSTRES, ETC
+                // GESTION DE CATEGORIAS COMO POSTRES, ETC
 // =====================================================================
 
 // seleccionar postres
@@ -397,7 +425,7 @@ const getPostres = async (req, res) => {
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
-            recetas_del_mundo.Año, 
+            recetas_del_mundo.anio, 
             recetas_del_mundo.pais_receta, 
             recetas_del_mundo.preparacion_receta, 
             recetas_del_mundo.fecha_creacion, 
@@ -408,6 +436,10 @@ const getPostres = async (req, res) => {
             INNER JOIN usuarios ON recetas_del_mundo.id_user = usuarios.id_user
             WHERE recetas_del_mundo.categoria='postres';`);
         // console.log(result);
+        // Verificar si hay resultados
+        if (result.length === 0) {
+            return res.status(404).json({ message: "La receta no se encuentra disponible." });
+        }
         res.json(result);
     } catch (error) {
         res.status(500);
@@ -427,7 +459,7 @@ const getDesayuno = async (req, res) => {
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
-            recetas_del_mundo.Año, 
+            recetas_del_mundo.anio, 
             recetas_del_mundo.pais_receta, 
             recetas_del_mundo.preparacion_receta, 
             recetas_del_mundo.fecha_creacion, 
@@ -438,6 +470,10 @@ const getDesayuno = async (req, res) => {
             INNER JOIN usuarios ON recetas_del_mundo.id_user = usuarios.id_user
             WHERE recetas_del_mundo.categoria='desayuno';`);
         // console.log(result);
+        // Verificar si hay resultados
+        if (result.length === 0) {
+            return res.status(404).json({ message: "La receta no se encuentra disponible." });
+        }
         res.json(result);
     } catch (error) {
         res.status(500);
