@@ -55,7 +55,7 @@ export class MealService3 {
 })
 export class CategoriaService {
 
-  private apiUrl = 'http://localhost:4000/categorias';
+  private apiUrl = 'https://api.pquintanilla.cl/categorias';
 
   constructor(private http: HttpClient) { }
 
@@ -69,7 +69,7 @@ export class CategoriaService {
 })
 export class CategoriaChile {
 
-  private apiUrl = 'http://localhost:4000/recetas-chile';
+  private apiUrl = 'https://api.pquintanilla.cl/recetas-chile';
 
   constructor(private http: HttpClient) { }
 
@@ -84,7 +84,7 @@ export class CategoriaChile {
 })
 export class FlagService {
 
-  private apiUrl = 'http://localhost:4000/paises';
+  private apiUrl = 'https://api.pquintanilla.cl/paises';
 
   constructor(private http: HttpClient) { }
 
@@ -99,7 +99,7 @@ export class FlagService {
 })
 export class PostreService {
 
-  private apiUrl = 'http://localhost:4000/categorias-postres';
+  private apiUrl = 'https://api.pquintanilla.cl/categorias-postres';
 
   constructor(private http: HttpClient) { }
 
@@ -116,7 +116,7 @@ export class PostreService {
 })
 export class recetasChile {
 
-  private apiUrl = 'http://localhost:4000/recetas-chile';
+  private apiUrl = 'https://api.pquintanilla.cl/recetas-chile';
 
   constructor(private http: HttpClient) { }
 
@@ -133,7 +133,7 @@ export class recetasChile {
 })
 export class recetasGB {
 
-  private apiUrl = 'http://localhost:4000/recetas-chile';
+  private apiUrl = 'https://api.pquintanilla.cl/recetas-chile';
 
   constructor(private http: HttpClient) { }
 
@@ -150,7 +150,7 @@ export class recetasGB {
 })
 export class recetasUsa {
 
-  private apiUrl = 'http://localhost:4000/recetas-chile';
+  private apiUrl = 'https://api.pquintanilla.cl/recetas-chile';
 
   constructor(private http: HttpClient) { }
 
@@ -167,7 +167,7 @@ export class recetasUsa {
 })
 export class recetasCanada {
 
-  private apiUrl = 'http://localhost:4000/recetas-chile';
+  private apiUrl = 'https://api.pquintanilla.cl/recetas-chile';
 
   constructor(private http: HttpClient) { }
 
@@ -184,7 +184,7 @@ export class recetasCanada {
 })
 export class recetasMexico {
 
-  private apiUrl = 'http://localhost:4000/recetas-chile';
+  private apiUrl = 'https://api.pquintanilla.cl/recetas-chile';
 
   constructor(private http: HttpClient) { }
 
@@ -201,7 +201,7 @@ export class recetasMexico {
 })
 export class recetasArgentina {
 
-  private apiUrl = 'http://localhost:4000/recetas-argentina';
+  private apiUrl = 'https://api.pquintanilla.cl/recetas-argentina';
 
   constructor(private http: HttpClient) { }
 
@@ -220,7 +220,7 @@ export class recetasArgentina {
 })
 export class UsuarioService {
 
-  private apiUrl = 'http://localhost:4000/usuarioejemplo?page=1';
+  private apiUrl = 'https://api.pquintanilla.cl/usuarioejemplo?page=1';
 
   constructor(private http: HttpClient) { }
 
