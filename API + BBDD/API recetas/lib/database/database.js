@@ -31,12 +31,7 @@ const sequelize = new Sequelize(claves.database, claves.user, claves.password, {
 });
 
 // Definición del modelo de conexión
-const Connection = sequelize.define('Connection', {
-  // No necesitamos definir campos para este modelo, ya que solo estamos configurando la conexión.
-}, {
-  // Opciones adicionales del modelo
-  timestamps: false // evitar que se agreguen automáticamente createdAt y updatedAt a la tabla
-});
+const Connection = sequelize.define('Connection');
 
 // Función para obtener la conexión
 const getConnection = async () => {

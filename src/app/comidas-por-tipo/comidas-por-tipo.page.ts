@@ -6,34 +6,15 @@ import { MealService,CategoriaService } from '../services/api.service';
   templateUrl: './comidas-por-tipo.page.html',
   styleUrls: ['./comidas-por-tipo.page.scss'],
 })
-// export class ComidasPorTipoPage implements OnInit {
-//   categories: any;
-
-//   constructor(private mealService: MealService) {}
-
-//   ngOnInit() {
-//     this.mealService.getCategories().subscribe((data) => {
-//       console.log(data)
-//       this.categories = data.categories;
-      
-//     });
-//   }
-// }
-
-
-
-////////////////////////
-
-
 export class ComidasPorTipoPage implements OnInit {
 
-  categories: any[0];
+  categories: any[1] = [1]; // Declaración correcta de un array vacío
 
   constructor(private categoriaService: CategoriaService) { }
 
   ngOnInit() {
     this.categoriaService.getCategorias().subscribe(data => {
-      console.log(data)
+      console.log(data);
       this.categories = data;
     });
   }
