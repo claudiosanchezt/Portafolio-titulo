@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { recetasChile } from '../../services/api.service';
+import { recetasArgentina, recetasChile } from '../../services/api.service';
 
 @Component({
   selector: 'app-chile',

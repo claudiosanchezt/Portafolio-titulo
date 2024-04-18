@@ -50,20 +50,6 @@ export class MealService3 {
 }
 
 /////// SERVICIOS PARA OBTENER DATOS DE UNA BBDD MYSQL MEDIANTE NODE ///////
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class CategoriaService {
-
-//   private apiUrl = 'https://recetas.pquintanilla.cl/categorias';
-
-//   constructor(private http: HttpClient) { }
-
-//   getCategorias() {
-//     return this.http.get<any[]>(this.apiUrl);
-//   }
-// }
-
 @Injectable({
   providedIn: 'root'
 })
@@ -74,15 +60,7 @@ export class CategoriaService {
   constructor(private http: HttpClient) { }
 
   getCategorias() {
-    return this.http.get<string>(this.apiUrl).pipe(
-      map(response => {
-        // Eliminar los dos corchetes al inicio del JSON
-        const jsonString = response.substring(1);
-        // Convertir el string JSON en un objeto
-        const jsonObj = JSON.parse(jsonString);
-        return jsonObj;
-      })
-    );
+    return this.http.get<any[]>(this.apiUrl);
   }
 }
 
@@ -96,17 +74,10 @@ export class CategoriaChile {
   constructor(private http: HttpClient) { }
 
   getCategorias() {
-    return this.http.get<string>(this.apiUrl).pipe(
-      map(response => {
-        // Eliminar los dos corchetes al inicio del JSON
-        const jsonString = response.substring(1);
-        // Convertir el string JSON en un objeto
-        const jsonObj = JSON.parse(jsonString);
-        return jsonObj;
-      })
-    );
+    return this.http.get<any[]>(this.apiUrl);
   }
 }
+
 
 // desde el localhost para obtener los datos de cada país
 @Injectable({
@@ -163,7 +134,7 @@ export class recetasChile {
 })
 export class recetasGB {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-chile';
+  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-gb';
 
   constructor(private http: HttpClient) { }
 
@@ -180,7 +151,7 @@ export class recetasGB {
 })
 export class recetasUsa {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-chile';
+  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-usa';
 
   constructor(private http: HttpClient) { }
 
@@ -197,7 +168,7 @@ export class recetasUsa {
 })
 export class recetasCanada {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-chile';
+  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-canada';
 
   constructor(private http: HttpClient) { }
 
@@ -214,7 +185,7 @@ export class recetasCanada {
 })
 export class recetasMexico {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-chile';
+  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-mexico';
 
   constructor(private http: HttpClient) { }
 
