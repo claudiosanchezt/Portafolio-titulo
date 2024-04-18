@@ -209,10 +209,22 @@ export class recetasArgentina {
   getCategorias() {
     return this.http.get<any[]>(this.apiUrl);
   }
-
-  
 }
 
+// para obtener las recetas españolas
+@Injectable({
+  providedIn: 'root'
+})
+export class recetasEspanolas {
+
+  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-es';
+
+  constructor(private http: HttpClient) { }
+
+  getCategorias() {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+}
 
 
 // para desplegar usuarios destacados jaja
