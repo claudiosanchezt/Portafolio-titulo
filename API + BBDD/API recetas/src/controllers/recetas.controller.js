@@ -5,7 +5,7 @@ const getRecetas = async (req, res) => {
 
     try {
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
         `SELECT  
         recetas_del_mundo.id_receta, 
         recetas_del_mundo.nombre_receta, 
@@ -39,7 +39,7 @@ const getPaises = async (req, res) => {
 
     try {
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
         `SELECT DISTINCT pais_receta FROM recetas_del_mundo;`);
         
         // Verificar si hay resultados
@@ -60,7 +60,7 @@ const getCategorias = async (req, res) => {
 
     try {
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
         `SELECT DISTINCT categoria FROM recetas_del_mundo;`);
         
         // Verificar si hay resultados
@@ -83,7 +83,7 @@ const getReceta = async (req, res) => {
         // console.log(req.params)
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
             `SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
@@ -139,7 +139,7 @@ const deleteReceta = async (req, res) => {
     try {
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query("DELETE FROM recetas_del_mundo WHERE id_receta = ?;", id);
+        const [result] = await connection.query("DELETE FROM recetas_del_mundo WHERE id_receta = ?;", id);
 
         if (result.affectedRows > 0) {
             // Elemento borrado exitosamente
@@ -168,7 +168,7 @@ const updateReceta = async (req, res) => {
         }
 
         const connection = await getConnection();
-        const result = await connection.query("UPDATE recetas_del_mundo SET ? WHERE id_receta = ?;",[receta,id]);
+        const [result] = await connection.query("UPDATE recetas_del_mundo SET ? WHERE id_receta = ?;",[receta,id]);
         
         // console.log(result);
         res.json(result);
@@ -191,7 +191,7 @@ const getRecetaCL = async (req, res) => {
         // console.log(req.params)
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
             `SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
@@ -224,7 +224,7 @@ const getRecetaUSA = async (req, res) => {
         // console.log(req.params)
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
             `SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
@@ -256,7 +256,7 @@ const getRecetaGB = async (req, res) => {
         // console.log(req.params)
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
             `SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
@@ -288,7 +288,7 @@ const getRecetaCA = async (req, res) => {
         // console.log(req.params)
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
             `SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
@@ -320,7 +320,7 @@ const getRecetaES = async (req, res) => {
         // console.log(req.params)
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
             `SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
@@ -352,7 +352,7 @@ const getRecetaMX = async (req, res) => {
         // console.log(req.params)
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
             `SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
@@ -384,7 +384,7 @@ const getReceta_ARG = async (req, res) => {
         // console.log(req.params)
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
             `SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
@@ -420,7 +420,7 @@ const getPostres = async (req, res) => {
         // console.log(req.params)
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
             `SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
@@ -454,7 +454,7 @@ const getDesayuno = async (req, res) => {
         // console.log(req.params)
         const { id } = req.params;
         const connection = await getConnection();
-        const result = await connection.query(
+        const [result] = await connection.query(
             `SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 

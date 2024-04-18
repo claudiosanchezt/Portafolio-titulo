@@ -15,7 +15,7 @@ const getUser = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query("SELECT id_user,nombres,user,fecha_creacion FROM usuarios");
+    const [result] = await connection.query("SELECT id_user,nombres,user,fecha_creacion FROM usuarios");
     // console.log(result);
     // Verificar si hay resultados
     if (result.length === 0) {
@@ -41,7 +41,7 @@ const ejemploUserPaginado = async (req, res) => {
     const connection = await (0, _database.getConnection)();
 
     // Consulta SQL con LIMIT y OFFSET para la paginación
-    const result = await connection.query(`SELECT id_user, nombres, user, fecha_creacion FROM usuarios LIMIT ${itemsPerPage} OFFSET ${offset}`);
+    const [result] = await connection.query(`SELECT id_user, nombres, user, fecha_creacion FROM usuarios LIMIT ${itemsPerPage} OFFSET ${offset}`);
 
     // Verificar si hay resultados
     if (result.length === 0) {
@@ -110,7 +110,7 @@ const updateUsuario = async (req, res) => {
       password
     };
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query("UPDATE usuarios SET ? WHERE id_user = ?;", [usuarioupdate, id]);
+    const [result] = await connection.query("UPDATE usuarios SET ? WHERE id_user = ?;", [usuarioupdate, id]);
     res.json({
       message: `Usuario ${user} Editado exitosamente`
     });
@@ -129,7 +129,7 @@ const deleteUsuario = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query("DELETE FROM usuarios WHERE id_user = ?;", id);
+    const [result] = await connection.query("DELETE FROM usuarios WHERE id_user = ?;", id);
     if (result.affectedRows > 0) {
       // Elemento borrado exitosamente
       res.json({

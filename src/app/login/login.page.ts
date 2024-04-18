@@ -8,7 +8,7 @@ import { UsuarioService } from '../services/api.service';
 })
 export class LoginPage implements OnInit {
 
-  usuario: any[0];
+  usuario: any[] = [];
 
   constructor(private categoriaService: UsuarioService) { }
 

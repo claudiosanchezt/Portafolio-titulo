@@ -9,7 +9,7 @@ var _database = require("./../database/database");
 const getRecetas = async (req, res) => {
   try {
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT  
+    const [result] = await connection.query(`SELECT  
         recetas_del_mundo.id_receta, 
         recetas_del_mundo.nombre_receta, 
         recetas_del_mundo.ingrediente_receta, 
@@ -42,7 +42,7 @@ const getRecetas = async (req, res) => {
 const getPaises = async (req, res) => {
   try {
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT DISTINCT pais_receta FROM recetas_del_mundo;`);
+    const [result] = await connection.query(`SELECT DISTINCT pais_receta FROM recetas_del_mundo;`);
 
     // Verificar si hay resultados
     if (result.length === 0) {
@@ -63,7 +63,7 @@ const getPaises = async (req, res) => {
 const getCategorias = async (req, res) => {
   try {
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT DISTINCT categoria FROM recetas_del_mundo;`);
+    const [result] = await connection.query(`SELECT DISTINCT categoria FROM recetas_del_mundo;`);
 
     // Verificar si hay resultados
     if (result.length === 0) {
@@ -88,7 +88,7 @@ const getReceta = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT  
+    const [result] = await connection.query(`SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
@@ -157,7 +157,7 @@ const deleteReceta = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query("DELETE FROM recetas_del_mundo WHERE id_receta = ?;", id);
+    const [result] = await connection.query("DELETE FROM recetas_del_mundo WHERE id_receta = ?;", id);
     if (result.affectedRows > 0) {
       // Elemento borrado exitosamente
       res.json({
@@ -203,7 +203,7 @@ const updateReceta = async (req, res) => {
       id_user
     };
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query("UPDATE recetas_del_mundo SET ? WHERE id_receta = ?;", [receta, id]);
+    const [result] = await connection.query("UPDATE recetas_del_mundo SET ? WHERE id_receta = ?;", [receta, id]);
 
     // console.log(result);
     res.json(result);
@@ -225,7 +225,7 @@ const getRecetaCL = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT  
+    const [result] = await connection.query(`SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
@@ -260,7 +260,7 @@ const getRecetaUSA = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT  
+    const [result] = await connection.query(`SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
@@ -294,7 +294,7 @@ const getRecetaGB = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT  
+    const [result] = await connection.query(`SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
@@ -328,7 +328,7 @@ const getRecetaCA = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT  
+    const [result] = await connection.query(`SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
@@ -362,7 +362,7 @@ const getRecetaES = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT  
+    const [result] = await connection.query(`SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
@@ -396,7 +396,7 @@ const getRecetaMX = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT  
+    const [result] = await connection.query(`SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
@@ -430,7 +430,7 @@ const getReceta_ARG = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT  
+    const [result] = await connection.query(`SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
@@ -468,7 +468,7 @@ const getPostres = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT  
+    const [result] = await connection.query(`SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
@@ -504,7 +504,7 @@ const getDesayuno = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const result = await connection.query(`SELECT  
+    const [result] = await connection.query(`SELECT  
             recetas_del_mundo.id_receta, 
             recetas_del_mundo.nombre_receta, 
             recetas_del_mundo.ingrediente_receta, 
