@@ -1,4 +1,4 @@
-import { getConnection } from "./../database/database"
+import { Connection, getConnection } from "./../database/database"
 
 // PARA OBTENER LOS RESULTADOS
 const getRecetas = async (req, res) => {
