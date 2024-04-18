@@ -1,13 +1,59 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>canada</ion-title>
+    <ion-title>Recetas Canadienses</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">canada</ion-title>
+      <ion-title size="large">recetas Canadienses</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="seccion-user text-center">
+          <img class="user-cheems" src="../../assets/img/user-cheems.png" alt="">
+        <h2 class="tx-azul ">Comidas <br> <span class="tx700">de Canadá</span></h2>
+        <p class="tx-cafe tx500">Lista de recetas Argentinas para probar y disfrutar.</p>
+        <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
+        <ion-item>
+          <ion-label>Ingresa un nombre <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required></ion-input>
+        </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+    <ion-accordion-group *ngFor="let post of postre">
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-thumbnail slot="start">
+          <img alt=" {{post.url_imagen}} " src="{{post.url_imagen}}" />
+        </ion-thumbnail>
+        <ion-label>{{post.nombre_receta}}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <p>Ingredientes: <i>{{post.ingrediente_receta}}</i></p>
+        <hr>
+        <p>Preparación: <i>{{post.preparacion_receta}}</i></p>
+        <hr>
+        <p>País de la receta: <i>{{post.pais_receta}}</i></p>
+        <p>Autor de la receta: <i>{{post.creado_por}}</i></p>
+      </div>
+    </ion-accordion>
+    <!-- <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>Second Accordion</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">Second Content</div>
+    </ion-accordion> -->
+   
+  </ion-accordion-group>
+
+
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { recetasChile } from '../../services/api.service';
+import { recetasCanada, recetasChile } from '../../services/api.service';
 
 @Component({
   selector: 'app-canada',
@@ -10,7 +10,7 @@ export class CanadaPage implements OnInit {
 
   postre: any[0];
 
-  constructor(private categoriaService: recetasChile) { }
+  constructor(private categoriaService: recetasCanada) { }
 
   ngOnInit() {
     this.categoriaService.getCategorias().subscribe(data => {
