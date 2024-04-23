@@ -17,6 +17,7 @@ router.get("/usuario", (req, res) => {
 
 // METODOS GET
 router.get("/receta/:id", recetasController.getReceta); // http://localhost:3000/receta/numero
+router.get("/receta-aleatoria", recetasController.recetaRandom); // http://localhost:3000/receta-aleatoria
 router.get("/recetas-chile", recetasController.getRecetaCL) // http://localhost:3000/recetas-chile
 router.get("/recetas-usa", recetasController.getRecetaUSA) // http://localhost:3000/recetas-usa
 router.get("/recetas-gb", recetasController.getRecetaGB) // http://localhost:3000/recetas-gb
