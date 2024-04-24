@@ -33,12 +33,11 @@ router.get("/categorias-desayuno", recetasController.getDesayuno) // http://loca
 // Ruta PUT para agregar una receta
 router.put('/add-receta', (req, res) => {
     res.status(200).send('Receta agregada exitosamente'); // http://localhost:3000/add-receta
-}); 
+});
 // METODOS PUT
 router.put("/edit-receta/:id", recetasController.updateReceta); // http://localhost:3000/edit-receta/numero
 // METODOS DELETE
 router.delete("/delete-receta/:id", recetasController.deleteReceta); // http://localhost:3000/delete-receta/numero
-
 
 // ========= USUARIOS =========
 
@@ -51,9 +50,5 @@ router.post("/usuario"); // http://localhost:3000/usuario
 router.put("/usuario"); // http://localhost:3000/usuario
 // METODO DELETE
 router.delete("/usuario"); // http://localhost:3000/usuario
-
-
-
 export default router;
-
 module.exports = router
