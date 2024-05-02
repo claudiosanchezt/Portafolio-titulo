@@ -34,7 +34,7 @@ async function scrapeAndSave() {
     // const ufValue = data.uf.valor;
 
     // Insertar los valores en la base de datos
-    const query = 'INSERT INTO indicadores (nombre, valor) VALUES ?';
+    const query = 'UPDATE `divisas` SET `valor` = ? WHERE `divisas`.`codigo_divisa` = USD';
     const values = [
       ['dolar', dolarValue],
     //   ['uf', ufValue]
