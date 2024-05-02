@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { methods as recetasController } from "../controllers/recetas.controller";
 import { usermethods as userController } from "../controllers/user.controller";
+import {products as productosController } from "../controllers/productos.controller";
 // ruta del proyecto
 const router = Router();
 // url principales | http://localhost:3000/
@@ -50,5 +51,10 @@ router.post("/usuario"); // http://localhost:3000/usuario
 router.put("/usuario"); // http://localhost:3000/usuario
 // METODO DELETE
 router.delete("/usuario"); // http://localhost:3000/usuario
+
+
+// ========= PRODUCTOS =========
+router.get("/productos", productosController.obtenerProducto) // http://localhost:3000/productos
+
 export default router;
 module.exports = router
