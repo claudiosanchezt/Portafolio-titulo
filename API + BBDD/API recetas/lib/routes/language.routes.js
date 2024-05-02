@@ -7,6 +7,7 @@ exports.default = void 0;
 var _express = require("express");
 var _recetas = require("../controllers/recetas.controller");
 var _user = require("../controllers/user.controller");
+var _productos = require("../controllers/productos.controller");
 // ruta del proyecto
 const router = (0, _express.Router)();
 // url principales | http://localhost:3000/
@@ -23,6 +24,7 @@ router.get("/usuario", (req, res) => {
 
 // METODOS GET
 router.get("/receta/:id", _recetas.methods.getReceta); // http://localhost:3000/receta/numero
+router.get("/receta-aleatoria", _recetas.methods.recetaRandom); // http://localhost:3000/receta-aleatoria
 router.get("/recetas-chile", _recetas.methods.getRecetaCL); // http://localhost:3000/recetas-chile
 router.get("/recetas-usa", _recetas.methods.getRecetaUSA); // http://localhost:3000/recetas-usa
 router.get("/recetas-gb", _recetas.methods.getRecetaGB); // http://localhost:3000/recetas-gb
@@ -55,5 +57,8 @@ router.post("/usuario"); // http://localhost:3000/usuario
 router.put("/usuario"); // http://localhost:3000/usuario
 // METODO DELETE
 router.delete("/usuario"); // http://localhost:3000/usuario
+
+// ========= PRODUCTOS =========
+router.get("/productos", _productos.products.obtenerProducto); // http://localhost:3000/productos
 var _default = exports.default = router;
 module.exports = router;
