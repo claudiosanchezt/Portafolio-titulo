@@ -60,6 +60,41 @@ const getPaises = async (req, res) => {
 };
 
 // PARA OBTENER LOS RESULTADOS
+const recetaRandom = async (req, res) => {
+  try {
+    const connection = await (0, _database.getConnection)();
+    const [result] = await connection.query(`SELECT  
+        recetas_del_mundo.id_receta, 
+        recetas_del_mundo.nombre_receta, 
+        recetas_del_mundo.ingrediente_receta, 
+        recetas_del_mundo.anio, 
+        recetas_del_mundo.pais_receta, 
+        recetas_del_mundo.preparacion_receta, 
+        recetas_del_mundo.fecha_creacion, 
+        recetas_del_mundo.url_imagen_receta, 
+        recetas_del_mundo.categoria,
+        usuarios.nombres as "creado_por" 
+        FROM recetas_del_mundo
+        INNER JOIN usuarios ON recetas_del_mundo.id_user = usuarios.id_user
+        ORDER BY RAND()
+        LIMIT 1;`);
+
+    // Verificar si hay resultados
+    if (result.length === 0) {
+      console.log("No hay más resultados disponibles.");
+      return res.status(404).json({
+        message: "No hay más resultados disponibles."
+      });
+    }
+    // console.log(result);
+    res.json(result);
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+};
+
+// PARA OBTENER LOS RESULTADOS
 const getCategorias = async (req, res) => {
   try {
     const connection = await (0, _database.getConnection)();
@@ -543,6 +578,7 @@ const methods = exports.methods = {
   getRecetaMX,
   getReceta_ARG,
   getPaises,
+  recetaRandom,
   // CATEGORIAS
   getCategorias,
   getPostres,
