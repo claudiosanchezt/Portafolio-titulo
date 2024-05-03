@@ -7,13 +7,15 @@
     "babel-node": "babel-node --presets=@babel/preset-env",
     "dev": "nodemon --exec npm run babel-node src/index.js",
     "start": "nodemon --exec npx babel-node src/index.js",
-    "build": "babel src -d lib"
+    "build": "babel src -d lib",
+    "dolar": "node lib/src/controllers/scraperdolar.controller.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@babel/node": "^7.23.9",
+    "axios": "^1.6.8",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",

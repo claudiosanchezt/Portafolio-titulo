@@ -12,12 +12,12 @@ const obtenerProducto = async (req, res) => {
   try {
     const connection = await (0, _database.getConnection)();
     const [result] = await connection.query(`SELECT 
-        prod.id_producto, 
-        prod.sku,
-        prod.nombre_producto,
-        prod.precio, ROUND(prod.precio / divi.valor,2) AS precio_en_dolares 
-        FROM productos prod 
-        INNER JOIN divisas divi ON prod.codigo_divisa = divi.codigo_divisa;`);
+        PROD.id_producto, 
+        PROD.sku,
+        PROD.nombre_producto,
+        PROD.precio, ROUND(PROD.precio / divi.valor,2) AS precio_en_dolares 
+        FROM productos PROD 
+        INNER JOIN divisas DIVI ON prod.codigo_divisa = divi.codigo_divisa;`);
 
     // Verificar si hay resultados
     if (result.length === 0) {
