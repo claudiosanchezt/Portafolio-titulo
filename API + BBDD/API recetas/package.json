@@ -6,9 +6,9 @@
   "scripts": {
     "babel-node": "babel-node --presets=@babel/preset-env",
     "dev": "nodemon --exec npm run babel-node src/index.js",
+    "cronjob": "node src/controllers/cron.js",
     "start": "nodemon --exec npx babel-node src/index.js",
-    "build": "babel src -d lib",
-    "dolar": "node lib/src/controllers/scraperdolar.controller.js"
+    "build": "babel src -d lib"
   },
   "keywords": [],
   "author": "",
