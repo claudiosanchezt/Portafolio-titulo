@@ -1,28 +1,28 @@
 const axios = require('axios');
 const mysql = require('mysql');
 
-// Configuración de la conexión a la base de datos MySQL
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'recetas_del_mundo'
-});
-
-// Conectar a la base de datos
-connection.connect((err) => {
-  if (err) {
-    console.error('Error al conectar a la base de datos: ', err);
-    return;
-  }
-  console.log('Conexión a la base de datos establecida');
-});
-
-// URL de la API a scrapear
-const apiUrl = 'https://mindicador.cl/api';
 
 // Función para realizar el scraping y guardar en la base de datos
 async function scrapeAndSave() {
+  // Configuración de la conexión a la base de datos MySQL
+  const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'recetas_del_mundo'
+  });
+  
+  // Conectar a la base de datos
+  connection.connect((err) => {
+    if (err) {
+      console.error('Error al conectar a la base de datos: ', err);
+      return;
+    }
+    console.log('Conexión a la base de datos establecida');
+  });
+  
+  // URL de la API a scrapear
+  const apiUrl = 'https://mindicador.cl/api';
   try {
     const response = await axios.get(apiUrl);
     const data = response.data;
