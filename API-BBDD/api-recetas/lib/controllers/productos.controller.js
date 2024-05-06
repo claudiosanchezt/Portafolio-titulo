@@ -15,10 +15,11 @@ const obtenerProducto = async (req, res) => {
         PROD.id_producto, 
         PROD.sku,
         PROD.nombre_producto,
-        PROD.precio, ROUND(PROD.precio / divi.valor,2) AS precio_en_dolares,
+        PROD.precio, ROUND(PROD.precio / DIVI.valor,2) AS precio_en_dolares,
+        DIVI.valor as valor_dolar_dia,
         DIVI.actualizado_el as dolar_actualizado
         FROM productos PROD 
-        INNER JOIN divisas DIVI ON prod.codigo_divisa = divi.codigo_divisa;`);
+        INNER JOIN divisas DIVI ON PROD.codigo_divisa = DIVI.codigo_divisa;`);
 
     // Verificar si hay resultados
     if (result.length === 0) {

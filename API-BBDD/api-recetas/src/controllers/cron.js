@@ -2,7 +2,7 @@ const cron = require('node-cron');
 const scrapeAndSave = require('./scraperdolar.controller');
 
 // Programa una tarea para que se ejecute cada minuto
-cron.schedule('*/1 * * * *', () => {
+cron.schedule('0 0 */1 * *', () => {
     try {
       console.log('Ejecutando scraping...');
       // Llama a tu función de scraping aquí
