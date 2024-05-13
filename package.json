@@ -9,7 +9,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "apk": "ionic cordova build android"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +23,7 @@
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
     "@capacitor/android": "5.5.1",
-    "@capacitor/app": "5.0.6",
+    "@capacitor/app": "5.0.7",
     "@capacitor/core": "5.5.1",
     "@capacitor/haptics": "5.0.6",
     "@capacitor/ios": "5.5.1",
