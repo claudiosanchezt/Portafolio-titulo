@@ -7,10 +7,10 @@
 
 
 <ion-content class="row mt-4">
-
-  <div class=" text-center">
+  <hr>
+  <div class=" text-center" *ngFor="let comida of postre">
     <img class="user-cheems" src="../../assets/img/user-cheems.png" alt="">
-    <h2 class="tx-azul tx700">Aleatorio</h2>
+    <h2 class="tx-azul tx700">{{comida.nombre_receta}}</h2>
     <p class="tx-cafe tx500">¿Te apetece probar algo delicioso? Descubre nuestros platos en la aplicación y elige tu
       favorito para disfrutar en casa. ¡Buen provecho!</p>
     <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
@@ -42,7 +42,5 @@
       <p>Creado por: {{comida.creado_por}}</p>
     </ion-card-content>
   </ion-card>
-
-
 
 </ion-content>
