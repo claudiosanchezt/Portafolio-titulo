@@ -24,13 +24,14 @@ export class MealService {
 @Injectable({
   providedIn: 'root'
 })
-export class MealService2 {
-  private apiUrl = 'https://www.themealdb.com/api/json/v1/1/random.php';
+export class AleatoriaMeal {
 
-  constructor(private http: HttpClient) {}
+  private apiUrl = 'https://api.recetasdelmundo.uno/receta-aleatoria';
 
-  getRandomMeal(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  constructor(private http: HttpClient) { }
+
+  getrandomMeal() {
+    return this.http.get<any[]>(this.apiUrl);
   }
 }
 
@@ -55,7 +56,7 @@ export class MealService3 {
 })
 export class CategoriaService {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/categorias';
+  private apiUrl = 'https://api.recetasdelmundo.uno/categorias';
 
   constructor(private http: HttpClient) { }
 
@@ -69,7 +70,7 @@ export class CategoriaService {
 })
 export class CategoriaChile {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-chile';
+  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-chile';
 
   constructor(private http: HttpClient) { }
 
@@ -85,7 +86,7 @@ export class CategoriaChile {
 })
 export class FlagService {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/paises';
+  private apiUrl = 'https://api.recetasdelmundo.uno/paises';
 
   constructor(private http: HttpClient) { }
 
@@ -100,7 +101,7 @@ export class FlagService {
 })
 export class PostreService {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/categorias-postres';
+  private apiUrl = 'https://api.recetasdelmundo.uno/categorias-postres';
 
   constructor(private http: HttpClient) { }
 
@@ -117,7 +118,7 @@ export class PostreService {
 })
 export class recetasChile {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-chile';
+  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-chile';
 
   constructor(private http: HttpClient) { }
 
@@ -134,7 +135,7 @@ export class recetasChile {
 })
 export class recetasGB {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-gb';
+  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-gb';
 
   constructor(private http: HttpClient) { }
 
@@ -151,7 +152,7 @@ export class recetasGB {
 })
 export class recetasUsa {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-usa';
+  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-usa';
 
   constructor(private http: HttpClient) { }
 
@@ -168,7 +169,7 @@ export class recetasUsa {
 })
 export class recetasCanada {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-canada';
+  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-canada';
 
   constructor(private http: HttpClient) { }
 
@@ -185,7 +186,7 @@ export class recetasCanada {
 })
 export class recetasMexico {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-mexico';
+  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-mexico';
 
   constructor(private http: HttpClient) { }
 
@@ -202,7 +203,7 @@ export class recetasMexico {
 })
 export class recetasArgentina {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-argentina';
+  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-argentina';
 
   constructor(private http: HttpClient) { }
 
@@ -217,7 +218,7 @@ export class recetasArgentina {
 })
 export class recetasEspanolas {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/recetas-es';
+  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-es';
 
   constructor(private http: HttpClient) { }
 
@@ -233,7 +234,7 @@ export class recetasEspanolas {
 })
 export class UsuarioService {
 
-  private apiUrl = 'https://recetas.pquintanilla.cl/usuarioejemplo?page=1';
+  private apiUrl = 'https://api.recetasdelmundo.uno/usuarioejemplo?page=1';
 
   constructor(private http: HttpClient) { }
 

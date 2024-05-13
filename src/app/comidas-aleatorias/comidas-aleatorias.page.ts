@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MealService2 } from '../services/api.service';
+import { AleatoriaMeal } from '../services/api.service';
 
 @Component({
   selector: 'app-comidas-aleatorias',
@@ -7,14 +7,16 @@ import { MealService2 } from '../services/api.service';
   styleUrls: ['./comidas-aleatorias.page.scss'],
 })
 export class ComidasAleatoriasPage implements OnInit {
-  randomMeal: any;
 
-  constructor(private mealService: MealService2) {}
+  postre: any[0];
+
+  constructor(private mealService: AleatoriaMeal) { }
 
   ngOnInit() {
-    this.mealService.getRandomMeal().subscribe(data => {
-      console.log(data);
-      this.randomMeal = data.meals[0]; // Asumiendo que la API devuelve un objeto con la propiedad "meals"
+    this.mealService.getrandomMeal().subscribe(data => {
+      console.log(data)
+      this.postre = data;
     });
   }
+
 }
