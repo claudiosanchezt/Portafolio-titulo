@@ -32,7 +32,7 @@ router.get("/categorias-postres", recetasController.getPostres) // http://localh
 router.get("/categorias-desayuno", recetasController.getDesayuno) // http://localhost:3000/categorias-desayuno
 // METODOS POST
 // Ruta PUT para agregar una receta
-router.put('/add-receta', (req, res) => {
+router.put("/add-receta",  (req, res) => {
     res.status(200).send('Receta agregada exitosamente'); // http://localhost:3000/add-receta
 });
 // METODOS PUT
