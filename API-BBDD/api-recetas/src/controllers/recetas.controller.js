@@ -172,23 +172,24 @@ const addReceta = async (req, res) => {
 // PARA ELIMINAR ELEMENTOS
 const deleteReceta = async (req, res) => {
     try {
-        const { id_receta } = req.params;
-        const connection = await getConnection();
-        const [result] = await connection.query(`DELETE FROM recetas_del_mundo WHERE recetas_del_mundo.id_receta = '?'`, [id_receta]);
-
-
-        if (result.affectedRows > 0) {
-            // Elemento borrado exitosamente
-            res.json({ message: `Elemento con ID ${[id_receta]} borrado exitosamente.` });
-        } else {
-            // No se encontró ningún elemento con el ID proporcionado
-            res.status(404).json({ message: `No se encontró ningún elemento con el ID ${id_receta}.` });
-        }
+      const { id } = req.params;
+      const connection = await getConnection();
+      const [result] = await connection.query("DELETE FROM recetas_del_mundo WHERE id_receta = '?'", [id]);
+  
+      if (![result].affectedRows) {
+        return res.status(404).json({ message: `No se encontró ningún elemento con el ID ${id}.` });
+      }
+  
+      res.json({ message: `Elemento con ID ${id} borrado exitosamente.` });
     } catch (error) {
-        // Error en la solicitud
-        res.status(500).send(error.message);
+      res.status(500).send(error.message);
     }
-};
+  };
+  
+
+
+
+
 
 // PARA ACTUALIZAR ELEMENTOS
 const updateReceta = async (req, res) => {
