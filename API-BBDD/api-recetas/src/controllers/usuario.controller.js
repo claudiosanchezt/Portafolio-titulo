@@ -1,14 +1,17 @@
 //  DECLARACION DE VARIABLES
 const database = require('./../database/database');
-const { httpError } = require('./../utils/error')
+const { httpError } = require('../utils/error');
 const { matchedData } = require('express-validator');
 //  METODO PARA OBTENER TODAS LOS USUARIOS
 const obtenerTodo = async (req, res) => {
     //obtener el id de todos los usuarios
     try {
-        const db = await database();
+        // Obtener la conexión a la base de datos
+        const db = await database.getConnection();
+        console.log(db);
         const sql = `SELECT nombres, user, fecha_creacion FROM usuarios`;
         const [rows] = await db.query(sql);
+        console.log(rows);
 
         const resultado = {
             ok: true,
@@ -24,8 +27,8 @@ const obtenerUnoSolo = async (req, res) => {
     //obtener el id por un usuario
     try {
         const { id } = req.params;
-
-        const db = await database();
+        // Obtener la conexión a la base de datos
+        const db = await database.getConnection();
         const sql = `SELECT nombres, user, fecha_creacion FROM usuarios WHERE id_user = ${id}`;
         const [row] = await db.query(sql);
 
@@ -44,10 +47,9 @@ const agregarUsuario = async (req, res) => {
     try {
         const body = matchedData(req);
         const { nombres, user, password } = body;
-
         const passwordhash = password;
-
-        const db = await database();
+        // Obtener la conexión a la base de datos
+        const db = await database.getConnection();
         comsole.log(db); 
         const sql = `INSERT INTO usuarios(nombres, user, password,fecha_creacion)
                 VALUES('${nombres}', '${user}', '${passwordhash}', NOW())`;
@@ -73,8 +75,8 @@ const editarUsuario = async (req, res) => {
     try {
         const { id } = req.params;
         const { nombres, user } = req.body;
-
-        const db = await database();
+        // Obtener la conexión a la base de datos
+        const db = await database.getConnection();
         const sql = `UPDATE usuarios SET
                     nombres = '${nombres}',
                     user = ${user}
@@ -91,8 +93,8 @@ const editarUsuario = async (req, res) => {
 const eliminarUsuario = async (req, res) => {
     try {
         const { id } = req.params;
-
-        const db = await database();
+        // Obtener la conexión a la base de datos
+        const db = await database.getConnection();
         const sql = `DELETE FROM usuarios
                 WHERE id_user = ${id}`;
         const [result] = await db.query(sql);

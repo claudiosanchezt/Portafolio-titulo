@@ -22,7 +22,6 @@ const login = async (req, res) => {
     const sql = `SELECT * FROM usuarios WHERE user = '${user}'`;
     // Ejecutar la consulta
     const [row] = await db.query(sql);
-    console.log(row);
 
     // Verificar si el usuario existe
     if (!row.length) {
@@ -45,13 +44,11 @@ const login = async (req, res) => {
 
     // Generar el objeto de usuario para el token
     const usuario = {
-      id: row[0].id_usr,
+      id: row[0].id_user,
       nombres: row[0].nombres
     };
-
     // Generar el token JWT
     const token = jwt.crearToken(usuario);
-
     // Enviar la respuesta con el token
     res.json({
       ok: true,

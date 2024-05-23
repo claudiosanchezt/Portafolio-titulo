@@ -13,8 +13,10 @@ const obtenerTodo = async (req, res) => {
   //obtener el id de todos los usuarios
   try {
     const db = await database();
+    console.log(db);
     const sql = `SELECT nombres, user, fecha_creacion FROM usuarios`;
     const [rows] = await db.query(sql);
+    console.log(rows);
     const resultado = {
       ok: true,
       data: rows
@@ -32,7 +34,7 @@ const obtenerUnoSolo = async (req, res) => {
       id
     } = req.params;
     const db = await database();
-    const sql = `SELECT nombres, user, fecha_creacion FROM usuarios WHERE id_usr = ${id}`;
+    const sql = `SELECT nombres, user, fecha_creacion FROM usuarios WHERE id_user = ${id}`;
     const [row] = await db.query(sql);
     const resultado = {
       ok: true,
