@@ -1,6 +1,8 @@
 // routes - rutas
 // import LanguageRoutes from "./routes/language.routes"
 const LanguageRoutes = require('./routes/language.routes');
+const loginRoutes = require('./routes/login.routes');
+const usersRoutes = require('./routes/usuario.routes');
 const express = require('express')
 const morgan = require ('morgan')
 // import express from "express";
@@ -19,6 +21,8 @@ app.use(express.json());
 // routes
 // app.use("/listado", LanguageRoutes)
 app.use("/",LanguageRoutes)
+app.use('/auth', loginRoutes);
+app.use('/user', usersRoutes);
 // app.use("/api/usuarios")
 
 module.exports = app;

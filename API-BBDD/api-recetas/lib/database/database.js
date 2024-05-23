@@ -1,23 +1,5 @@
 "use strict";
 
-// import mysql from "promise-mysql";
-// import { claves } from "./../config";
-
-// const connection = mysql.createConnection({
-//     host: claves.host,
-//     database: claves.database,
-//     user: claves.user,
-//     password: claves.password
-// });
-
-// const getConnection = () => {
-//     return connection;
-// }
-
-// module.exports = {
-//     getConnection
-// }
-
 const {
   Sequelize
 } = require('sequelize');
@@ -46,8 +28,9 @@ const getConnection = async () => {
   }
 };
 
+//
+
 // Exportar la función de conexión
 module.exports = {
-  getConnection,
-  Connection
+  getConnection
 };
