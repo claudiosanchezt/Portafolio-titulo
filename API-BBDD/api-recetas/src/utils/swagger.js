@@ -9,8 +9,8 @@ const options = {
       version: '1.5.0',
       description: 'Documentación de la API REST de Creada para Proyecto Portafolio de Titulo - Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez -  Italo B******** ',
       contact: {
-        name: 'Claudio Sanchez - Matias Roman',
-        url: 'https://github.com/claudiosanchezt/Integracion_de_Plataforma_FERRAMAS',
+        name: 'Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez -  Italo B********',
+        url: 'https://github.com/AntaresAnton/Portafolio-titulo',
       },
       license: {
         name: 'MIT',
@@ -18,7 +18,7 @@ const options = {
       },
         servers: [
         {
-          url: 'https://integracion-plataforma-ferramas.iacst.space',
+          url: 'http://api.recetasdelmundo.uno',
           description: 'Producción',
         },
         {
@@ -26,7 +26,7 @@ const options = {
           description: 'Desarrollo',
         },
       ],
-      termsOfService: 'https://github.com/claudiosanchezt/Integracion_de_Plataforma_FERRAMAS/blob/main/LICENSE',
+      termsOfService: 'https://github.com/AntaresAnton/Portafolio-titulo/blob/main/LICENSE',
     },
   },
   // Ruta a los archivos donde se encuentra documentada la API
