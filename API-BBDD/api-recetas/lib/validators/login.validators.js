@@ -9,12 +9,12 @@ const {
   httpError
 } = require('../utils/error');
 // Validar los datos que se envian desde el cliente
-const validadorLogin = [check('user').exists().withMessage("Favor debe ir el atributo nomnbre de usuario Ej: pperez").notEmpty().withMessage("Favor este campo debe venir con informacion usuario Ej: pperez").isLength({
+const validadorLogin = [check('correo').exists().withMessage("Favor debe ir el atributo correo Ejemplo: correo@gmail.com").notEmpty().withMessage("Favor este campo debe venir con informacion").isLength({
   min: 5
-}).withMessage("El minimo de caracteres son 5"), check('password').exists().withMessage("Favor debe ir el atributo password Ej: MiPassword123").notEmpty().withMessage("Favor este campo debe venir con informacion Ej: MiPassword123").isLength({
-  min: 3,
-  max: 30
-}).withMessage("El minimo de caracteres son 3 y el maximo son 30"), (req, res, next) => {
+}).withMessage("El minimo de caracteres son 5"), check('password').exists().withMessage("Favor debe ir el atributo password").notEmpty().withMessage("Favor este campo debe venir con informacion").isLength({
+  min: 8,
+  max: 16
+}).withMessage("El minimo de caracteres son 8 y el maximo son 16"), (req, res, next) => {
   try {
     validationResult(req).throw();
     next();

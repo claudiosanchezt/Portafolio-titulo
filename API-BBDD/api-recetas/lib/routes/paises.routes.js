@@ -2,12 +2,12 @@
 
 /**
  * @swagger
- * /api/recetas:
+ * /api/paises:
  *   get:
- *     summary: Obtener todas las recetas
+ *     summary: Obtener todos los países
  *     responses:
  *       200:
- *         description: Recetas obtenidas exitosamente
+ *         description: Países obtenidos exitosamente
  *         content:
  *           application/json:
  *             schema:
@@ -18,9 +18,9 @@
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Receta'
+ *                     $ref: '#/components/schemas/Pais'
  *   post:
- *     summary: Agregar una nueva receta
+ *     summary: Agregar un nuevo país
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -28,10 +28,10 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/NuevaReceta'
+ *             $ref: '#/components/schemas/NuevoPais'
  *     responses:
  *       200:
- *         description: Receta agregada exitosamente
+ *         description: País agregado exitosamente
  *         content:
  *           application/json:
  *             schema:
@@ -42,9 +42,9 @@
  *                 msj:
  *                   type: string
  *
- * /api/recetas/{id}:
+ * /api/paises/{id}:
  *   get:
- *     summary: Obtener una receta por ID
+ *     summary: Obtener un país por ID
  *     parameters:
  *       - in: path
  *         name: id
@@ -53,7 +53,7 @@
  *           type: integer
  *     responses:
  *       200:
- *         description: Receta obtenida exitosamente
+ *         description: País obtenido exitosamente
  *         content:
  *           application/json:
  *             schema:
@@ -64,9 +64,9 @@
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Receta'
+ *                     $ref: '#/components/schemas/Pais'
  *   put:
- *     summary: Actualizar una receta
+ *     summary: Actualizar un país
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -80,10 +80,10 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ActualizarReceta'
+ *             $ref: '#/components/schemas/ActualizarPais'
  *     responses:
  *       200:
- *         description: Receta actualizada exitosamente
+ *         description: País actualizado exitosamente
  *         content:
  *           application/json:
  *             schema:
@@ -94,7 +94,7 @@
  *                 msj:
  *                   type: string
  *   delete:
- *     summary: Eliminar una receta
+ *     summary: Eliminar un país
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -105,7 +105,7 @@
  *           type: integer
  *     responses:
  *       200:
- *         description: Receta eliminada exitosamente
+ *         description: País eliminado exitosamente
  *         content:
  *           application/json:
  *             schema:
@@ -116,9 +116,9 @@
  *                 msj:
  *                   type: string
  *
- * /api/recetas/nombre/{name}:
+ * /api/paises/nombre/{name}:
  *   get:
- *     summary: Obtener recetas por nombre
+ *     summary: Obtener países por nombre
  *     parameters:
  *       - in: path
  *         name: name
@@ -127,7 +127,7 @@
  *           type: string
  *     responses:
  *       200:
- *         description: Recetas obtenidas exitosamente
+ *         description: Países obtenidos exitosamente
  *         content:
  *           application/json:
  *             schema:
@@ -138,70 +138,16 @@
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Receta'
- *
- * /api/recetas/categoria/{name}:
- *   get:
- *     summary: Obtener recetas por categoría
- *     parameters:
- *       - in: path
- *         name: name
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Recetas obtenidas exitosamente
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 ok:
- *                   type: boolean
- *                 data:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/Receta'
- *
- * /api/recetas/pais/{name}:
- *   get:
- *     summary: Obtener recetas por país
- *     parameters:
- *       - in: path
- *         name: name
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Recetas obtenidas exitosamente
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 ok:
- *                   type: boolean
- *                 data:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/Receta'
+ *                     $ref: '#/components/schemas/Pais'
  *
  * components:
  *   schemas:
- *     Receta:
+ *     Pais:
  *       type: object
  *       properties:
- *         id_receta:
+ *         id_pais:
  *           type: integer
  *         nombre:
- *           type: string
- *         descripcion:
- *           type: string
- *         ingredientes:
- *           type: string
- *         preparacion:
  *           type: string
  *         url_imagen:
  *           type: string
@@ -210,59 +156,28 @@
  *           format: date-time
  *         estado:
  *           type: string
- *         categoria:
- *           type: string
- *         pais:
- *           type: string
  *
- *     NuevaReceta:
+ *     NuevoPais:
  *       type: object
  *       required:
  *         - nombre
- *         - descripcion
- *         - ingredientes
- *         - preparacion
  *         - url_imagen
  *         - estado
- *         - categoria
- *         - pais
  *       properties:
  *         nombre:
- *           type: string
- *         descripcion:
- *           type: string
- *         ingredientes:
- *           type: string
- *         preparacion:
  *           type: string
  *         url_imagen:
  *           type: string
  *         estado:
  *           type: boolean
- *         categoria:
- *           type: string
- *         pais:
- *           type: string
  *
- *     ActualizarReceta:
+ *     ActualizarPais:
  *       type: object
  *       properties:
  *         nombre:
  *           type: string
- *         descripcion:
- *           type: string
- *         ingredientes:
- *           type: string
- *         preparacion:
- *           type: string
- *         url_imagen:
- *           type: string
  *         estado:
  *           type: boolean
- *         categoria:
- *           type: string
- *         pais:
- *           type: string
  *
  *   securitySchemes:
  *     bearerAuth:
@@ -276,25 +191,28 @@ const {
 } = require('express');
 //CONTROLADORES
 const {
-  agregarUsuario,
-  editarUsuario,
-  eliminarUsuario,
-  obtenerTodo,
-  obtenerUnoSolo
-} = require('./../controllers/usuario.controller');
+  obtenerPaises,
+  agregarPais,
+  obtenerPais,
+  obtenerPaisNombre,
+  editarPais,
+  eliminarPais
+} = require('../controllers/paises.controllers');
+//LLAMAMOS NUESTRO METODO DE VERIFICAR TOKEN.
 const {
   TokenTrue
-} = require('./../middlewares/auth');
+} = require('../middlewares/auth');
 const {
-  validadorUsuario
-} = require('./../validators/usuario.validators');
+  validadorPaises
+} = require('../validators/paises.validators');
 //INSTACIA DE NUESTRA ROUTER DE EXPRESS
 const router = Router();
-//  METODOS DE NUESTRA RUTA
-router.get('/', TokenTrue, obtenerTodo);
-router.get('/:id', TokenTrue, obtenerUnoSolo);
-router.post('/', [validadorUsuario], agregarUsuario);
-router.put('/:id', TokenTrue, editarUsuario);
-router.delete('/:id', TokenTrue, eliminarUsuario);
-//  EXPORTA NUESTRA RUTA PARA NUESTRO INDEX.JS
+//RUTAS DE PAISES
+router.get('/', obtenerPaises);
+router.post('/', TokenTrue, [validadorPaises], agregarPais);
+router.get('/:id', obtenerPais);
+router.get('/nombre/:name', obtenerPaisNombre);
+router.put('/:id', TokenTrue, editarPais);
+router.delete('/:id', TokenTrue, eliminarPais);
+//EXPORTA NUESTRA RUTA PARA NUESTRO INDEX.JS
 module.exports = router;

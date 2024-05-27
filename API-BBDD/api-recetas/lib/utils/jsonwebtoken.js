@@ -1,6 +1,5 @@
 "use strict";
 
-// Objetivo: Crear y verificar token
 const jwt = require('jsonwebtoken');
 const {
   claves

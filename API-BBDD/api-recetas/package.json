@@ -11,7 +11,7 @@
     "build": "babel src -d lib"
   },
   "keywords": [],
-  "author": " Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez -  Italo B********",
+  "author": " Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez -  Italo Brignardello",
   "license": "ISC",
   "dependencies": {
     "@babel/node": "^7.23.9",
