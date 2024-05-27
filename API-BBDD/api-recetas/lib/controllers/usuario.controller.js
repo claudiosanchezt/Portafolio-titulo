@@ -4,7 +4,7 @@
 const database = require('./../database/database');
 const {
   httpError
-} = require('./../utils/error');
+} = require('../utils/error');
 const {
   matchedData
 } = require('express-validator');
@@ -12,7 +12,8 @@ const {
 const obtenerTodo = async (req, res) => {
   //obtener el id de todos los usuarios
   try {
-    const db = await database();
+    // Obtener la conexión a la base de datos
+    const db = await database.getConnection();
     console.log(db);
     const sql = `SELECT nombres, user, fecha_creacion FROM usuarios`;
     const [rows] = await db.query(sql);
@@ -33,7 +34,8 @@ const obtenerUnoSolo = async (req, res) => {
     const {
       id
     } = req.params;
-    const db = await database();
+    // Obtener la conexión a la base de datos
+    const db = await database.getConnection();
     const sql = `SELECT nombres, user, fecha_creacion FROM usuarios WHERE id_user = ${id}`;
     const [row] = await db.query(sql);
     const resultado = {
@@ -55,7 +57,8 @@ const agregarUsuario = async (req, res) => {
       password
     } = body;
     const passwordhash = password;
-    const db = await database();
+    // Obtener la conexión a la base de datos
+    const db = await database.getConnection();
     comsole.log(db);
     const sql = `INSERT INTO usuarios(nombres, user, password,fecha_creacion)
                 VALUES('${nombres}', '${user}', '${passwordhash}', NOW())`;
@@ -84,7 +87,8 @@ const editarUsuario = async (req, res) => {
       nombres,
       user
     } = req.body;
-    const db = await database();
+    // Obtener la conexión a la base de datos
+    const db = await database.getConnection();
     const sql = `UPDATE usuarios SET
                     nombres = '${nombres}',
                     user = ${user}
@@ -103,7 +107,8 @@ const eliminarUsuario = async (req, res) => {
     const {
       id
     } = req.params;
-    const db = await database();
+    // Obtener la conexión a la base de datos
+    const db = await database.getConnection();
     const sql = `DELETE FROM usuarios
                 WHERE id_user = ${id}`;
     const [result] = await db.query(sql);

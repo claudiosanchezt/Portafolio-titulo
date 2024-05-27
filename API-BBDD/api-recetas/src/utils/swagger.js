@@ -5,10 +5,9 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'integracion-plataforma-FERRAMAS',
+      title: 'api-recetas-del-mundo',
       version: '1.5.0',
-      description: 'Documentación de la API REST de integración de plataforma FERRAMAS' +
-       '<br> Integracion de APIs : https://mindicador.cl/api - API de divisas / https://www.transbankdevelopers.cl/ - API de pagos',
+      description: 'Documentación de la API REST de Creada para Proyecto Portafolio de Titulo - Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez -  Italo B******** ',
       contact: {
         name: 'Claudio Sanchez - Matias Roman',
         url: 'https://github.com/claudiosanchezt/Integracion_de_Plataforma_FERRAMAS',

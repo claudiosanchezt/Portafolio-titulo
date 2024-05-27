@@ -4,7 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.methods = void 0;
+var _sequelize = require("sequelize");
 var _database = require("./../database/database");
+var _utils = require("sequelize/lib/utils");
+var _moment = _interopRequireDefault(require("moment"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 // PARA OBTENER LOS RESULTADOS
 const getRecetas = async (req, res) => {
   try {
@@ -157,21 +161,22 @@ const addReceta = async (req, res) => {
     const {
       nombre_receta,
       ingrediente_receta,
+      anio,
       pais_receta,
       preparacion_receta,
+      url_imagen_receta,
       categoria,
       id_user
     } = req.body;
-
-    // if (nombre_receta == undefined || ingrediente_receta == undefined) {
-    //     return res.status(400).json({ message: "Bad Request, Por favor, completa los datos." })
-    // }
-
+    const fecha_creacion = (0, _moment.default)().format('YYYY-MM-DD hh:mm:ss');
     const receta = {
       nombre_receta,
       ingrediente_receta,
+      anio,
       pais_receta,
       preparacion_receta,
+      fecha_creacion,
+      url_imagen_receta,
       categoria,
       id_user
     };
@@ -222,6 +227,7 @@ const updateReceta = async (req, res) => {
       pais_receta,
       categoria,
       preparacion_receta,
+      url_imagen_receta,
       id_user
     } = req.body;
     if (nombre_receta == undefined || ingrediente_receta == undefined) {
@@ -235,6 +241,7 @@ const updateReceta = async (req, res) => {
       pais_receta,
       categoria,
       preparacion_receta,
+      url_imagen_receta,
       id_user
     };
     const connection = await (0, _database.getConnection)();

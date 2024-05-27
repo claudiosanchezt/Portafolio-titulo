@@ -189,7 +189,7 @@ const {
 //INSTACIA DE NUESTRA ROUTER DE EXPRESS
 const router = Router();
 //  METODOS DE NUESTRA RUTA
-router.get('/', obtenerTodo);
+router.get('/', TokenTrue, obtenerTodo);
 router.get('/:id', TokenTrue, obtenerUnoSolo);
 router.post('/', [validadorUsuario], agregarUsuario);
 router.put('/:id', TokenTrue, editarUsuario);

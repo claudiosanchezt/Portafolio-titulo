@@ -1,11 +1,11 @@
 /**
  * @swagger
- * /api/usuarios:
+ * /api/recetas:
  *   get:
- *     summary: Obtener todos los usuarios
+ *     summary: Obtener todas las recetas
  *     responses:
  *       200:
- *         description: Usuarios obtenidos exitosamente
+ *         description: Recetas obtenidas exitosamente
  *         content:
  *           application/json:
  *             schema:
@@ -16,31 +16,33 @@
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Usuario'
+ *                     $ref: '#/components/schemas/Receta'
  *   post:
- *     summary: Agregar un nuevo usuario
+ *     summary: Agregar una nueva receta
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/NuevoUsuario'
+ *             $ref: '#/components/schemas/NuevaReceta'
  *     responses:
  *       200:
- *         description: Usuario agregado exitosamente
+ *         description: Receta agregada exitosamente
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
+ *                 ok:
+ *                   type: boolean
  *                 msj:
  *                   type: string
- *                 usuario:
- *                   $ref: '#/components/schemas/Usuario'
  *
- * /api/usuarios/{id}:
+ * /api/recetas/{id}:
  *   get:
- *     summary: Obtener un usuario por ID
+ *     summary: Obtener una receta por ID
  *     parameters:
  *       - in: path
  *         name: id
@@ -49,7 +51,7 @@
  *           type: integer
  *     responses:
  *       200:
- *         description: Usuario obtenido exitosamente
+ *         description: Receta obtenida exitosamente
  *         content:
  *           application/json:
  *             schema:
@@ -58,9 +60,13 @@
  *                 ok:
  *                   type: boolean
  *                 data:
- *                   $ref: '#/components/schemas/Usuario'
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
  *   put:
- *     summary: Actualizar un usuario
+ *     summary: Actualizar una receta
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -72,19 +78,23 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ActualizarUsuario'
+ *             $ref: '#/components/schemas/ActualizarReceta'
  *     responses:
  *       200:
- *         description: Usuario actualizado exitosamente
+ *         description: Receta actualizada exitosamente
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
+ *                 ok:
+ *                   type: boolean
  *                 msj:
  *                   type: string
  *   delete:
- *     summary: Eliminar un usuario
+ *     summary: Eliminar una receta
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -93,78 +103,170 @@
  *           type: integer
  *     responses:
  *       200:
- *         description: Usuario eliminado exitosamente
+ *         description: Receta eliminada exitosamente
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
+ *                 ok:
+ *                   type: boolean
  *                 msj:
  *                   type: string
  *
+ * /api/recetas/nombre/{name}:
+ *   get:
+ *     summary: Obtener recetas por nombre
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Recetas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *
+ * /api/recetas/categoria/{name}:
+ *   get:
+ *     summary: Obtener recetas por categoría
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Recetas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *
+ * /api/recetas/pais/{name}:
+ *   get:
+ *     summary: Obtener recetas por país
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Recetas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *
  * components:
  *   schemas:
- *     Usuario:
+ *     Receta:
  *       type: object
  *       properties:
+ *         id_receta:
+ *           type: integer
  *         nombre:
  *           type: string
- *         apellido:
+ *         descripcion:
  *           type: string
- *         rut:
+ *         ingredientes:
  *           type: string
- *         direccion:
+ *         preparacion:
  *           type: string
- *         telefono:
+ *         url_imagen:
  *           type: string
- *         correo_electronico:
+ *         fecha_creacion:
  *           type: string
- *         id_rol:
- *           type: integer
- *         activo:
- *           type: boolean
+ *           format: date-time
+ *         estado:
+ *           type: string
+ *         categoria:
+ *           type: string
+ *         pais:
+ *           type: string
  *
- *     NuevoUsuario:
+ *     NuevaReceta:
  *       type: object
+ *       required:
+ *         - nombre
+ *         - descripcion
+ *         - ingredientes
+ *         - preparacion
+ *         - url_imagen
+ *         - estado
+ *         - categoria
+ *         - pais
  *       properties:
  *         nombre:
  *           type: string
- *         apellido:
+ *         descripcion:
  *           type: string
- *         password:
+ *         ingredientes:
  *           type: string
- *         rut:
+ *         preparacion:
  *           type: string
- *         direccion:
+ *         url_imagen:
  *           type: string
- *         telefono:
- *           type: string
- *         correo:
- *           type: string
- *         rol:
- *           type: integer
- *         activo:
+ *         estado:
  *           type: boolean
+ *         categoria:
+ *           type: string
+ *         pais:
+ *           type: string
  *
- *     ActualizarUsuario:
+ *     ActualizarReceta:
  *       type: object
  *       properties:
  *         nombre:
  *           type: string
- *         apellido:
+ *         descripcion:
  *           type: string
- *         rut:
+ *         ingredientes:
  *           type: string
- *         direccion:
+ *         preparacion:
  *           type: string
- *         telefono:
+ *         url_imagen:
  *           type: string
- *         correo:
- *           type: string
- *         rol:
- *           type: integer
- *         activo:
+ *         estado:
  *           type: boolean
+ *         categoria:
+ *           type: string
+ *         pais:
+ *           type: string
+ *
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  */
 // Obtenemos el metodo Router de express
 const { Router } = require('express');

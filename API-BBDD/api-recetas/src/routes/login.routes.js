@@ -8,7 +8,7 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Credenciales'
+ *             $ref: '#/components/schemas/LoginInput'
  *     responses:
  *       200:
  *         description: Inicio de sesión exitoso
@@ -50,19 +50,10 @@
  *                   type: boolean
  *       401:
  *         description: Token inválido
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 ok:
- *                   type: boolean
- *                 msj:
- *                   type: string
  *
  * components:
  *   schemas:
- *     Credenciales:
+ *     LoginInput:
  *       type: object
  *       required:
  *         - correo

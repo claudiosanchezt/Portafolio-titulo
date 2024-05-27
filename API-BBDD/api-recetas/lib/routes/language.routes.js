@@ -8,20 +8,23 @@ var _express = require("express");
 var _recetas = require("../controllers/recetas.controller");
 var _user = require("../controllers/user.controller");
 var _productos = require("../controllers/productos.controller");
+var _language = require("./../validators/language.validators");
+var _auth = require("./../middlewares/auth");
 // ruta del proyecto
 const router = (0, _express.Router)();
-// url principales | http://localhost:3000/
-// router.get("/", recetasController.getRecetas);
 router.get("/", (req, res) => {
   _recetas.methods.getRecetas(req, res);
 });
-// router.get("/usuario", userController.getUser);
 router.get("/usuario", (req, res) => {
   _user.usermethods.getUser(req, res);
 });
-
 // ========= RECETAS =========
-
+// METODOS POST
+router.post('/add-receta', _language.validadorReceta, _recetas.methods.addReceta); // http://localhost:3000/add-receta
+// METODOS PUT
+router.put("/edit-receta/:id", _language.validadorEditarReceta, _recetas.methods.updateReceta); // http://localhost:3000/edit-receta/numero
+// METODOS DELETE
+router.delete("/delete-receta/:id", _language.validadorEliminarReceta, _recetas.methods.deleteReceta); // http://localhost:3000/delete-receta/numero
 // METODOS GET
 router.get("/receta/:id", _recetas.methods.getReceta); // http://localhost:3000/receta/numero
 router.get("/receta-aleatoria", _recetas.methods.recetaRandom); // http://localhost:3000/receta-aleatoria
@@ -36,18 +39,7 @@ router.get("/paises", _recetas.methods.getPaises); // http://localhost:3000/pais
 router.get("/categorias", _recetas.methods.getCategorias); // http://localhost:3000/categorias
 router.get("/categorias-postres", _recetas.methods.getPostres); // http://localhost:3000/categorias-postres
 router.get("/categorias-desayuno", _recetas.methods.getDesayuno); // http://localhost:3000/categorias-desayuno
-// METODOS POST
-// Ruta PUT para agregar una receta
-router.put('/add-receta', (req, res) => {
-  res.status(200).send('Receta agregada exitosamente'); // http://localhost:3000/add-receta
-});
-// METODOS PUT
-router.put("/edit-receta/:id", _recetas.methods.updateReceta); // http://localhost:3000/edit-receta/numero
-// METODOS DELETE
-router.delete("/delete-receta/:id", _recetas.methods.deleteReceta); // http://localhost:3000/delete-receta/numero
-
 // ========= USUARIOS =========
-
 // METODO GET
 router.get("/", _user.usermethods.getUser); // http://localhost:3000/usuario
 router.get("/usuarioejemplo", _user.usermethods.ejemploUserPaginado); // http://localhost:3000/usuarioejemplo?page=1
@@ -57,7 +49,6 @@ router.post("/usuario"); // http://localhost:3000/usuario
 router.put("/usuario"); // http://localhost:3000/usuario
 // METODO DELETE
 router.delete("/usuario"); // http://localhost:3000/usuario
-
 // ========= PRODUCTOS =========
 router.get("/productos", _productos.products.obtenerProducto); // http://localhost:3000/productos
 var _default = exports.default = router;
