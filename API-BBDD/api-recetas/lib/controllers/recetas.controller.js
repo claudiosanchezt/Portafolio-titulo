@@ -192,20 +192,16 @@ const deleteReceta = async (req, res) => {
       id
     } = req.params;
     const connection = await (0, _database.getConnection)();
-    const [result] = await connection.query("DELETE FROM recetas_del_mundo WHERE id_receta = ?;", id);
-    if (result.affectedRows > 0) {
-      // Elemento borrado exitosamente
-      res.json({
-        message: `Elemento con ID ${id} borrado exitosamente.`
-      });
-    } else {
-      // No se encontró ningún elemento con el ID proporcionado
-      res.status(404).json({
+    const [result] = await connection.query("DELETE FROM recetas_del_mundo WHERE id_receta = '?'", [id]);
+    if (![result].affectedRows) {
+      return res.status(404).json({
         message: `No se encontró ningún elemento con el ID ${id}.`
       });
     }
+    res.json({
+      message: `Elemento con ID ${id} borrado exitosamente.`
+    });
   } catch (error) {
-    // Error en la solicitud
     res.status(500).send(error.message);
   }
 };
