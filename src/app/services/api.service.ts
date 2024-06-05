@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+// Obtener el token del almacenamiento de sesión
+const token = sessionStorage.getItem('token');
 
+// Crear los encabezados HTTP con el token
+const headers = new HttpHeaders({
+  'Content-Type': 'application/json',
+  'Authorization': `Bearer ${token}`
+});
 // APIS LOCALES FUNCIONALES
 
 // módulo para obtener datos de categorías
@@ -11,7 +18,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MealService {
-  private apiUrl = 'https://www.themealdb.com/api/json/v1/1/categories.php';
+  private apiUrl = 'https://apirecetas.iacst.space/categoria/';
 
   constructor(private http: HttpClient) { }
 
@@ -26,7 +33,7 @@ export class MealService {
 })
 export class AleatoriaMeal {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/receta-aleatoria';
+  private apiUrl = 'https://apirecetas.iacst.space/receta-aleatoria';
 
   constructor(private http: HttpClient) { }
 
@@ -41,7 +48,7 @@ export class AleatoriaMeal {
   providedIn: 'root'
 })
 export class MealService3 {
-  private apiUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian';
+  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/Canadian';
 
   constructor(private http: HttpClient) { }
 
@@ -56,7 +63,7 @@ export class MealService3 {
 })
 export class CategoriaService {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/categorias';
+  private apiUrl = 'https://apirecetas.iacst.space/categoria/';
 
   constructor(private http: HttpClient) { }
 
@@ -70,7 +77,7 @@ export class CategoriaService {
 })
 export class CategoriaChile {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-chile';
+  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/chile';
 
   constructor(private http: HttpClient) { }
 
@@ -86,7 +93,7 @@ export class CategoriaChile {
 })
 export class FlagService {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/paises';
+  private apiUrl = 'https://apirecetas.iacst.space/pais/';
 
   constructor(private http: HttpClient) { }
 
@@ -101,7 +108,7 @@ export class FlagService {
 })
 export class PostreService {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/categorias-postres';
+  private apiUrl = 'https://apirecetas.iacst.space/categoria/nombre/Seafood';
 
   constructor(private http: HttpClient) { }
 
@@ -118,7 +125,7 @@ export class PostreService {
 })
 export class recetasChile {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-chile';
+  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/chile';
 
   constructor(private http: HttpClient) { }
 
@@ -135,7 +142,7 @@ export class recetasChile {
 })
 export class recetasGB {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-gb';
+  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/British';
 
   constructor(private http: HttpClient) { }
 
@@ -152,7 +159,7 @@ export class recetasGB {
 })
 export class recetasUsa {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-usa';
+  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/American';
 
   constructor(private http: HttpClient) { }
 
@@ -169,7 +176,7 @@ export class recetasUsa {
 })
 export class recetasCanada {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-canada';
+  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/Canadian';
 
   constructor(private http: HttpClient) { }
 
@@ -186,7 +193,7 @@ export class recetasCanada {
 })
 export class recetasMexico {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-mexico';
+  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/Mexican';
 
   constructor(private http: HttpClient) { }
 
@@ -203,7 +210,7 @@ export class recetasMexico {
 })
 export class recetasArgentina {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-argentina';
+  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/Argentinian';
 
   constructor(private http: HttpClient) { }
 
@@ -218,7 +225,7 @@ export class recetasArgentina {
 })
 export class recetasEspanolas {
 
-  private apiUrl = 'https://api.recetasdelmundo.uno/recetas-es';
+  private apiUrl = 'https://apirecetas.iacst.space/pais/nombre/Argentinian';
 
   constructor(private http: HttpClient) { }
 
@@ -233,12 +240,14 @@ export class recetasEspanolas {
   providedIn: 'root'
 })
 export class UsuarioService {
-
-  private apiUrl = 'https://api.recetasdelmundo.uno/usuarioejemplo?page=1';
+  private apiUrl = 'https://apirecetas.iacst.space/usuario/';
 
   constructor(private http: HttpClient) { }
 
-  getCategorias() {
-    return this.http.get<any[]>(this.apiUrl);
+  getUsuarios() {
+    const options = {
+      headers: headers
+    };
+    return this.http.get<any[]>(this.apiUrl, options);
   }
 }
