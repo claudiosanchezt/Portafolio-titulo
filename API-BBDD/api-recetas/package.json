@@ -7,8 +7,10 @@
     "babel-node": "babel-node --presets=@babel/preset-env",
     "dev": "nodemon --exec npm run babel-node src/index.js",
     "cronjob": "node src/controllers/cron.js",
-    "start": "nodemon --exec npx babel-node src/index.js",
-    "build": "babel src -d lib"
+    "start": "nodemon --exec npx babel-node lib/index.js",
+    "build": "babel src -d lib",
+    "install-deps": "npm install dotenv express express-validator jsonwebtoken mysql mysql2 axios fs node-cron transbank-sdk swagger-ui-express swagger-jsdoc jest supertest",
+    "postinstall": "npm run clean-cache && npm run install-deps"
   },
   "keywords": [],
   "author": " Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez -  Italo Brignardello",
