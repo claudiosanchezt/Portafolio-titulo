@@ -14,9 +14,7 @@ export class SeleccionarPage implements OnInit {
 
   ngOnInit() {
     this.mealService.getCategories().subscribe((data) => {
-      console.log(data)
       this.categories = data.categories;
-      
     });
   }
 }
