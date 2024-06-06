@@ -10,6 +10,7 @@ const obtenerRecetas = async (req, res) => {
         const db = await database.getConnection();
         const sql = `
         SELECT 
+<<<<<<< HEAD
                 r.id_receta,
                 r.nombre,
                 r.url_imagen,
@@ -30,10 +31,33 @@ const obtenerRecetas = async (req, res) => {
             INNER JOIN usuario u ON u.id_usr = r.id_usr
             INNER JOIN categoria c ON c.id_cat = r.id_cat
             INNER JOIN pais p ON p.id_pais = r.id_pais
+=======
+            r.id_receta,
+            r.nombre,
+            r.url_imagen,
+            r.ingrediente,
+            r.preparacion,
+            r.id_cat,
+            c.nombre as nombre_cat,
+            r.id_pais,
+            p.nombre as nombre_pais,    
+            r.fecha_creacion,
+            CASE r.estado
+                WHEN 1 THEN 'Activo'
+                ELSE 'Inactivo'
+            END AS estado,
+            u.id_usr,
+            CONCAT(u.nombre, ' ', u.apellido) as nombre_y_apellido
+        FROM receta r
+        INNER JOIN usuario u ON u.id_usr = r.id_usr
+        INNER JOIN categoria c ON c.id_cat = r.id_cat
+        INNER JOIN pais p ON p.id_pais = r.id_pais
+>>>>>>> upstream/main
         `;
 
         const [rows] = await db.query(sql);
 
+<<<<<<< HEAD
         res.json(
             {
                 "ok": true,
@@ -41,6 +65,14 @@ const obtenerRecetas = async (req, res) => {
             }
         );
     } catch (error) {
+=======
+        res.json({
+            ok: true,
+            data: rows
+        });
+    } catch (error) {
+        console.error('Error al obtener recetas:', error);
+>>>>>>> upstream/main
         httpError(res, "ERROR_GET_RECETAS");
     }
 }
