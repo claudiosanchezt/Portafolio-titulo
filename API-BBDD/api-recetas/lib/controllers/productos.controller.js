@@ -8,27 +8,35 @@ var _database = require("./../database/database");
 // SELECT PROD.id_producto, PROD.nombre_producto, PROD.precio, (PROD.precio * divi.valor) AS precio_en_dolares FROM productos PROD INNER JOIN divisas DIVI ON prod.codigo_divisa = divi.codigo_divisa;
 
 // PARA OBTENER LOS RESULTADOS
+
 const obtenerProducto = async (req, res) => {
   try {
     const connection = await (0, _database.getConnection)();
     const [result] = await connection.query(`SELECT 
+
         PROD.id_producto, 
+
         PROD.sku,
+
         PROD.nombre_producto,
-        PROD.precio, ROUND(PROD.precio / DIVI.valor,2) AS precio_en_dolares,
-        DIVI.valor as valor_dolar_dia,
-        DIVI.actualizado_el as dolar_actualizado
+
+        PROD.precio, ROUND(PROD.precio / divi.valor,2) AS precio_en_dolares 
+
         FROM productos PROD 
-        INNER JOIN divisas DIVI ON PROD.codigo_divisa = DIVI.codigo_divisa;`);
+
+        INNER JOIN divisas DIVI ON prod.codigo_divisa = divi.codigo_divisa;`);
 
     // Verificar si hay resultados
+
     if (result.length === 0) {
       console.log("No hay productos disponibles.");
       return res.status(404).json({
         message: "No hay productos disponibles."
       });
     }
+
     // console.log(result);
+
     res.json(result);
   } catch (error) {
     res.status(500);
@@ -37,5 +45,6 @@ const obtenerProducto = async (req, res) => {
 };
 const products = exports.products = {
   // GET 
+
   obtenerProducto
 };

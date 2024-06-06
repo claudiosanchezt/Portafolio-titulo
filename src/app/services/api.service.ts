@@ -56,6 +56,43 @@ export class MealService3 {
     return this.http.get(this.apiUrl);
   }
 }
+/////// SERVICIOS PARA OBTENER DATOS DE UNA BBDD MYSQL MEDIANTE NODE ///////
+// módulo para obtener datos de productos 
+@Injectable({
+  providedIn: 'root'
+})
+export class RecetasService {
+
+  private apiUrl = 'https://apirecetas.iacst.space/recetas/';
+
+  constructor(private http: HttpClient) { }
+
+  getRecetas(): Observable<any> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+}
+
+export class RecetasNombreService {
+  private apiUrl = 'https://apirecetas.iacst.space/recetas/nombre';
+
+  constructor(private http: HttpClient) { }
+
+  getRecetasNombre(nombrereceta: string): Observable<any> {
+    const url = `${this.apiUrl}/${encodeURIComponent(nombrereceta)}`;
+    return this.http.get<any[]>(url);
+  }
+}
+
+export class RecetasIdService {
+  private apiUrl = 'https://apirecetas.iacst.space/recetas';
+
+  constructor(private http: HttpClient) { }
+
+  getRecetasId(id: string): Observable<any> {
+    const url = `${this.apiUrl}/${encodeURIComponent(id)}`;
+    return this.http.get<any[]>(url);
+  }
+}
 
 /////// SERVICIOS PARA OBTENER DATOS DE UNA BBDD MYSQL MEDIANTE NODE ///////
 @Injectable({
