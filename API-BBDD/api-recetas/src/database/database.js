@@ -1,13 +1,11 @@
 const { Sequelize } = require('sequelize');
-const { claves } = require('./../config');
+const claves = require('./../config'); // Corrige la ruta si es necesario
+
 // Configuración de Sequelize
 const sequelize = new Sequelize(claves.database, claves.user, claves.password, {
   host: claves.host,
-  dialect: 'mysql',
+  dialect: claves.dialect,
 });
-
-// Definición del modelo de conexión
-const Connection = sequelize.define('Connection');
 
 // Función para obtener la conexión
 const getConnection = async () => {
@@ -26,5 +24,9 @@ const getConnection = async () => {
 
 // Exportar la función de conexión
 module.exports = {
+<<<<<<< HEAD
   getConnection
+=======
+  getConnection,
+>>>>>>> upstream/main
 };

@@ -29,45 +29,10 @@ export class LoginPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    // No se realiza ninguna acción de inicialización
+    this.categoriaService.getCategorias().subscribe(data => {
+      console.log(data)
+      this.usuario = data;
+    });
   }
 
-  login(form: NgForm) {
-    const loginData = {
-      correo: form.value.correo,
-      password: form.value.password
-    };
-  
-    this.authService.login(loginData).subscribe(
-      response => {
-        if (Array.isArray(response)) {
-          this.usuario = response;
-        } else {
-          this.usuario = [response];
-        }
-  
-        // Almacenar el token en el almacenamiento de sesión
-        if (response.token) {
-          sessionStorage.setItem('token', response.token);
-        }
-  
-        this.usuarioService.getUsuarios().subscribe({
-          next: (response: any) => {
-            if (response.ok && response.data) {
-              this.data = response.data;
-              this.router.navigate(['/seleccionar']);
-            } else {
-              console.error('Error en la respuesta del servicio:', response);
-            }
-          },
-          error: error => {
-            console.error('Error al obtener categorías:', error);
-          }
-        });
-      },
-      error => {
-        console.error('Error en el inicio de sesión:', error);
-      }
-    );
-  }
 }
