@@ -1,7 +1,0 @@
-{
-  "name": "app-recetas",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
