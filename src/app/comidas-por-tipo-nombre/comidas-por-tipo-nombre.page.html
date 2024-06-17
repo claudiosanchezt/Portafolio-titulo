@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Comidas por Tipo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Comidas por Tipo</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="seccion-user text-center">
+          <img class="user-cheems" src="../../assets/img/user-cheems.png" alt="">
+          <h2 class="tx-azul">Comidas <br> <span class="tx700">Por Tipo, segun Nombre.</span></h2>
+          <p class="tx-cafe tx500">Lista de comidas típicas de diferentes tipos para probar y disfrutar.</p>
+          <ion-item>
+            <ion-label>Ingresa un tipo <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input [(ngModel)]="categoriaSeleccionada" required></ion-input>
+          </ion-item>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="obtenerRecetasPorCategoria()">Buscar</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button [routerLink]="['/seleccionar']">Volver</ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card-content *ngIf="categorias.length > 0; else noRecetasEncontradas">
+    <ion-list>
+      <ion-item *ngFor="let categoria of categorias" class="ion-item-with-border">
+        <ion-thumbnail slot="start">
+          <img alt="{{ categoria.nombre }}" [src]="categoria.url_imagen" class="recipe-image" />
+        </ion-thumbnail>
+        <a [routerLink]="['/detalle-receta', categoria.id_receta]" class="recipe-link">
+          <div class="recipe-name-container">
+            <ion-label class="recipe-name">{{ categoria.nombre }}</ion-label>
+          </div>
+        </a>
+      </ion-item>
+    </ion-list>
+
+  </ion-card-content>
+  <div class="ion-text-center ion-padding-top">
+    <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
+    <ion-button class="redondeado" (click)="subir()">Subir</ion-button>
+  </div>
+  <ng-template #noRecetasEncontradas>
+    <p *ngIf="mostrarMensajeNoEncontrado">No se encontraron categorías para el tipo "{{ categoriaSeleccionada }}".</p>
+  </ng-template>
+</ion-content>

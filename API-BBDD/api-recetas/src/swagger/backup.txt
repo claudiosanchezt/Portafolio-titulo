@@ -1,0 +1,967 @@
+/**
+ * @swagger
+ * /api/categorias:
+ *   get:
+ *     summary: Obtener todas las categorías
+ *     responses:
+ *       200:
+ *         description: Categorías obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Categoria'
+ *   post:
+ *     summary: Agregar una nueva categoría
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/NuevaCategoria'
+ *     responses:
+ *       200:
+ *         description: Categoría agregada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *
+ * /api/categorias/{id}:
+ *   get:
+ *     summary: Obtener una categoría por ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Categoría obtenida exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Categoria'
+ *   put:
+ *     summary: Actualizar una categoría
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ActualizarCategoria'
+ *     responses:
+ *       200:
+ *         description: Categoría actualizada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *   delete:
+ *     summary: Eliminar una categoría
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Categoría eliminada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *
+ * /api/categorias/nombre/{name}:
+ *   get:
+ *     summary: Obtener categorías por nombre
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Categorías obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Categoria'
+ *
+ * components:
+ *   schemas:
+ *     Categoria:
+ *       type: object
+ *       properties:
+ *         id_cat:
+ *           type: integer
+ *         nombre:
+ *           type: string
+ *         fecha_creacion:
+ *           type: string
+ *           format: date-time
+ *         estado:
+ *           type: string
+ *
+ *     NuevaCategoria:
+ *       type: object
+ *       required:
+ *         - nombre
+ *         - estado
+ *       properties:
+ *         nombre:
+ *           type: string
+ *         estado:
+ *           type: boolean
+ *
+ *     ActualizarCategoria:
+ *       type: object
+ *       properties:
+ *         nombre:
+ *           type: string
+ *         estado:
+ *           type: boolean
+ */
+
+ /**
+ * @swagger
+ * /api/login:
+ *   post:
+ *     summary: Iniciar sesión
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/LoginInput'
+ *     responses:
+ *       200:
+ *         description: Inicio de sesión exitoso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 token:
+ *                   type: string
+ *       400:
+ *         description: Credenciales inválidas
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *
+ * /api/verificar:
+ *   post:
+ *     summary: Verificar token
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Token válido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *       401:
+ *         description: Token inválido
+ *
+ * components:
+ *   schemas:
+ *     LoginInput:
+ *       type: object
+ *       required:
+ *         - correo
+ *         - password
+ *       properties:
+ *         correo:
+ *           type: string
+ *         password:
+ *           type: string
+ *
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ */
+
+ /**
+ * @swagger
+ * /api/paises:
+ *   get:
+ *     summary: Obtener todos los países
+ *     responses:
+ *       200:
+ *         description: Países obtenidos exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Pais'
+ *   post:
+ *     summary: Agregar un nuevo país
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/NuevoPais'
+ *     responses:
+ *       200:
+ *         description: País agregado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *
+ * /api/paises/{id}:
+ *   get:
+ *     summary: Obtener un país por ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: País obtenido exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Pais'
+ *   put:
+ *     summary: Actualizar un país
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ActualizarPais'
+ *     responses:
+ *       200:
+ *         description: País actualizado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *   delete:
+ *     summary: Eliminar un país
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: País eliminado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *
+ * /api/paises/nombre/{name}:
+ *   get:
+ *     summary: Obtener países por nombre
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Países obtenidos exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Pais'
+ *
+ * components:
+ *   schemas:
+ *     Pais:
+ *       type: object
+ *       properties:
+ *         id_pais:
+ *           type: integer
+ *         nombre:
+ *           type: string
+ *         url_imagen:
+ *           type: string
+ *         fecha_creacion:
+ *           type: string
+ *           format: date-time
+ *         estado:
+ *           type: string
+ *
+ *     NuevoPais:
+ *       type: object
+ *       required:
+ *         - nombre
+ *         - url_imagen
+ *         - estado
+ *       properties:
+ *         nombre:
+ *           type: string
+ *         url_imagen:
+ *           type: string
+ *         estado:
+ *           type: boolean
+ *
+ *     ActualizarPais:
+ *       type: object
+ *       properties:
+ *         nombre:
+ *           type: string
+ *         estado:
+ *           type: boolean
+ *
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ */
+
+ /**
+ * @swagger
+ * /api/recetas:
+ *   get:
+ *     summary: Obtener todas las recetas
+ *     responses:
+ *       200:
+ *         description: Recetas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *   post:
+ *     summary: Agregar una nueva receta
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/NuevaReceta'
+ *     responses:
+ *       200:
+ *         description: Receta agregada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *
+ * /api/recetas/{id}:
+ *   get:
+ *     summary: Obtener una receta por ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Receta obtenida exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *   put:
+ *     summary: Actualizar una receta
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ActualizarReceta'
+ *     responses:
+ *       200:
+ *         description: Receta actualizada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *   delete:
+ *     summary: Eliminar una receta
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Receta eliminada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *
+ * /api/recetas/nombre/{name}:
+ *   get:
+ *     summary: Obtener recetas por nombre
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Recetas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *
+ * /api/recetas/categoria/{name}:
+ *   get:
+ *     summary: Obtener recetas por categoría
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Recetas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *
+ * /api/recetas/pais/{name}:
+ *   get:
+ *     summary: Obtener recetas por país
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Recetas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *
+ * components:
+ *   schemas:
+ *     Receta:
+ *       type: object
+ *       properties:
+ *         id_receta:
+ *           type: integer
+ *         nombre:
+ *           type: string
+ *         descripcion:
+ *           type: string
+ *         ingredientes:
+ *           type: string
+ *         preparacion:
+ *           type: string
+ *         url_imagen:
+ *           type: string
+ *         fecha_creacion:
+ *           type: string
+ *           format: date-time
+ *         estado:
+ *           type: string
+ *         categoria:
+ *           type: string
+ *         pais:
+ *           type: string
+ *
+ *     NuevaReceta:
+ *       type: object
+ *       required:
+ *         - nombre
+ *         - descripcion
+ *         - ingredientes
+ *         - preparacion
+ *         - url_imagen
+ *         - estado
+ *         - categoria
+ *         - pais
+ *       properties:
+ *         nombre:
+ *           type: string
+ *         descripcion:
+ *           type: string
+ *         ingredientes:
+ *           type: string
+ *         preparacion:
+ *           type: string
+ *         url_imagen:
+ *           type: string
+ *         estado:
+ *           type: boolean
+ *         categoria:
+ *           type: string
+ *         pais:
+ *           type: string
+ *
+ *     ActualizarReceta:
+ *       type: object
+ *       properties:
+ *         nombre:
+ *           type: string
+ *         descripcion:
+ *           type: string
+ *         ingredientes:
+ *           type: string
+ *         preparacion:
+ *           type: string
+ *         url_imagen:
+ *           type: string
+ *         estado:
+ *           type: boolean
+ *         categoria:
+ *           type: string
+ *         pais:
+ *           type: string
+ *
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ */
+
+ /**
+ * @swagger
+ * /api/recetas:
+ *   get:
+ *     summary: Obtener todas las recetas
+ *     responses:
+ *       200:
+ *         description: Recetas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *   post:
+ *     summary: Agregar una nueva receta
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/NuevaReceta'
+ *     responses:
+ *       200:
+ *         description: Receta agregada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *
+ * /api/recetas/{id}:
+ *   get:
+ *     summary: Obtener una receta por ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Receta obtenida exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *   put:
+ *     summary: Actualizar una receta
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ActualizarReceta'
+ *     responses:
+ *       200:
+ *         description: Receta actualizada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *   delete:
+ *     summary: Eliminar una receta
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Receta eliminada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 msj:
+ *                   type: string
+ *
+ * /api/recetas/nombre/{name}:
+ *   get:
+ *     summary: Obtener recetas por nombre
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Recetas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *
+ * /api/recetas/categoria/{name}:
+ *   get:
+ *     summary: Obtener recetas por categoría
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Recetas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *
+ * /api/recetas/pais/{name}:
+ *   get:
+ *     summary: Obtener recetas por país
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Recetas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 ok:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Receta'
+ *
+ * components:
+ *   schemas:
+ *     Receta:
+ *       type: object
+ *       properties:
+ *         id_receta:
+ *           type: integer
+ *         nombre:
+ *           type: string
+ *         descripcion:
+ *           type: string
+ *         ingredientes:
+ *           type: string
+ *         preparacion:
+ *           type: string
+ *         url_imagen:
+ *           type: string
+ *         fecha_creacion:
+ *           type: string
+ *           format: date-time
+ *         estado:
+ *           type: string
+ *         categoria:
+ *           type: string
+ *         pais:
+ *           type: string
+ *
+ *     NuevaReceta:
+ *       type: object
+ *       required:
+ *         - nombre
+ *         - descripcion
+ *         - ingredientes
+ *         - preparacion
+ *         - url_imagen
+ *         - estado
+ *         - categoria
+ *         - pais
+ *       properties:
+ *         nombre:
+ *           type: string
+ *         descripcion:
+ *           type: string
+ *         ingredientes:
+ *           type: string
+ *         preparacion:
+ *           type: string
+ *         url_imagen:
+ *           type: string
+ *         estado:
+ *           type: boolean
+ *         categoria:
+ *           type: string
+ *         pais:
+ *           type: string
+ *
+ *     ActualizarReceta:
+ *       type: object
+ *       properties:
+ *         nombre:
+ *           type: string
+ *         descripcion:
+ *           type: string
+ *         ingredientes:
+ *           type: string
+ *         preparacion:
+ *           type: string
+ *         url_imagen:
+ *           type: string
+ *         estado:
+ *           type: boolean
+ *         categoria:
+ *           type: string
+ *         pais:
+ *           type: string
+ *
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ */

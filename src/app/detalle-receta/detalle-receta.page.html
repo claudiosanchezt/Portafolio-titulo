@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle receta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Detalle Receta</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="seccion-user text-center">
+          <img class="user-cheems" src="../../assets/img/user-cheems.png" alt="">
+          <p class="tx-cafe tx500">Detalle Receta</p>
+          <ion-button class="redondeado" (click)="onClick($event)">Volver</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-col>
+    <ion-list *ngIf="receta">
+      <ion-item *ngFor="let recetaItem of receta">
+        <ion-card>
+          <img [src]="recetaItem.url_imagen" [alt]="recetaItem.nombre">
+          <ion-card-header>
+            <strong><ion-card-title>{{ recetaItem.nombre }}</ion-card-title></strong>
+            <strong><ion-card-subtitle>{{ recetaItem.nombre_cat}}</ion-card-subtitle></strong>
+            <strong><ion-card-subtitle>{{ recetaItem.nombre_pais }}</ion-card-subtitle></strong>
+          </ion-card-header>
+          <ion-card-content>
+            <strong>
+              <h2>Ingredientes</h2>
+            </strong>
+            <p class="text-justify">{{ recetaItem.ingrediente }}</p>
+            <br>
+            <strong>
+              <h2>Preparación</h2>
+            </strong>
+            <p class="text-justify">{{ recetaItem.preparacion }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+  </ion-col>
+  <div class="ion-text-center ion-padding-top">
+    <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
+    <ion-button class="redondeado" (click)="subir()">Subir</ion-button>
+  </div>
+
+</ion-content>

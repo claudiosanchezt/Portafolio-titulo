@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ingresar</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+<ion-content padding class="background-image">
+  <ion-card center>
+    <ion-card-header>
+      <b>Ingreso de Usuarios</b>
+    </ion-card-header>
+    <div *ngIf="errorMessage" class="ion-text-center ion-text-danger ion-padding-top">
+      <ion-card color="danger">
+        <ion-card-content>
+          {{ errorMessage }}
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <ion-card-content>
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating" aria-label="Correo"></ion-label>
+            <ion-input type="text" name="correo" ngModel required aria-label="Correo"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" aria-label="Contraseña"></ion-label>
+            <ion-input type="password" name="password" ngModel required aria-label="Contraseña"></ion-input>
+          </ion-item>
+        </ion-list>
+        <div padding>
+          <ion-button type="submit" [disabled]="!loginForm.valid" class="redondeado">Iniciar sesión</ion-button>
+        </div>
+      </form>
+      <hr>
+      <div class="usuarios-activos">
+        <h5>Lista 5 Ultimos Usuarios Registrados:</h5>
+        <p *ngFor="let user of data">
+          <ion-icon name="radio-button-on-outline" class="naranjo"></ion-icon>
+          {{ user.nombre }} {{ user.apellido }}
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="boton-centrado">
+    <ion-button class="redondeado center" [routerLink]="['/home']">regresar</ion-button>
+  </div>
+</ion-content>

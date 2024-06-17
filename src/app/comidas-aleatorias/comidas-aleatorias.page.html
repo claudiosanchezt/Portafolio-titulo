@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/seleccionar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recetas Aleatorias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Recetas Aleatorias</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="seccion-user text-center">
+          <img class="user-cheems" src="../../assets/img/user-cheems.png" alt="">
+          <h2 class="tx-azul">Recetas <br> <span class="tx700">Aleatorias</span></h2>
+          <p class="tx-cafe tx500">Descubre recetas aleatorias y disfruta de nuevos sabores.</p>
+          <ion-button [routerLink]="['/seleccionar']">Volver</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card-content *ngIf="recetasRandom.length > 0; else noRecetasEncontradas">
+    <ion-list>
+      <ion-item *ngFor="let receta of recetasRandom" class="ion-item-with-border">
+        <ion-thumbnail slot="start">
+          <img alt="{{ receta.nombre }}" [src]="receta.url_imagen" class="recipe-image" />
+        </ion-thumbnail>
+        <a [routerLink]="['/detalle-receta', receta.id_receta]" class="recipe-link">
+          <div class="recipe-name-container">
+            <ion-label class="recipe-name">{{ receta.nombre }}</ion-label>
+          </div>
+        </a>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+  <div class="ion-text-center ion-padding-top">
+    <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
+    <ion-button class="redondeado" (click)="subir()">Subir</ion-button>
+  </div>
+  <ng-template #noRecetasEncontradas>
+    <p>No se encontraron recetas.</p>
+  </ng-template>

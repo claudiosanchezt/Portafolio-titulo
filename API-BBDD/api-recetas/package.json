@@ -1,0 +1,51 @@
+{
+  "name": "api-recetas-del-mundo",
+  "version": "1.5.0",
+  "description": "Creada para Proyecto Portafolio de Titulo - Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez -  Italo B******** ",
+  "main": "index.js",
+  "scripts": {
+    "babel-node": "babel-node --presets=@babel/preset-env",
+    "dev": "nodemon --exec npm run babel-node src/index.js",
+    "cronjob": "node src/controllers/cron.js",
+    "start": "nodemon --exec npx babel-node lib/index.js",
+    "build": "babel src -d lib",
+    "install-deps": "npm install dotenv express express-validator jsonwebtoken mysql mysql2 axios fs node-cron transbank-sdk swagger-ui-express swagger-jsdoc jest supertest",
+    "postinstall": "npm run clean-cache && npm run install-deps"
+  },
+  "keywords": [],
+  "author": " Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez -  Italo Brignardello",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/node": "^7.23.9",
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.1.0",
+    "fs": "^0.0.1-security",
+    "jest": "^29.7.0",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.10.0",
+    "node-cron": "^3.0.3",
+    "npm": "^10.8.0",
+    "promise-mysql": "^5.2.0",
+    "python3": "^0.0.1",
+    "sequelize": "^6.37.3",
+    "supertest": "^7.0.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "transbank-sdk": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.6",
+    "@babel/core": "^7.24.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
+    "babel-node": "^0.0.1-security",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.0"
+  }
+}

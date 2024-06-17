@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recetas por Tipo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image ion-text-center ion-padding-top ion-padding-left ion-padding-right">
+  <ion-col>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="seccion-user text-center">
+            <img class="user-cheems" src="../../assets/img/user-cheems.png" alt="">
+            <h2 class="tx-azul">Comidas <br> <span class="tx700">Por Tipo</span></h2>
+            <p class="tx-cafe tx500">Lista de comidas para probar y disfrutar.</p>
+            <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-list *ngIf="categorias && categorias.length > 0" class="ion-padding">
+      <ion-item *ngFor="let categoria of categorias" [routerLink]="['/comidas-por-tipo-nombre', categoria.nombre]"
+        class="ion-item-with-border">
+        <ion-thumbnail slot="start">
+          <img *ngIf="categoria.url_imagen; else defaultImage" alt="{{ categoria.nombre }}"
+            src="{{ categoria.url_imagen }}" class="recipe-image" />
+          <ng-template #defaultImage>
+            <img class="cheems-huaso" src="../../assets/img/cheems-waso.png" alt="Imagen por defecto">
+          </ng-template>
+        </ion-thumbnail>
+        <div class="recipe-name-container">
+          <ion-label class="recipe-name">{{ categoria.nombre }}</ion-label>
+        </div>
+      </ion-item>
+    </ion-list>
+    <div *ngIf="categorias && categorias.length === 0" class="ion-padding">
+      <p>No hay categorías disponibles.</p>
+    </div>
+    <div class="ion-text-center ion-padding-top">
+      <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
+      <ion-button class="redondeado" (click)="subir()">Subir</ion-button>
+    </div>
+  </ion-col>
+</ion-content>

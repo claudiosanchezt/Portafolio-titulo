@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/seleccionar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Comidas por País</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Comidas por país</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="seccion-user text-center">
+          <img class="user-cheems" src="../../assets/img/user-cheems.png" alt="">
+          <h2 class="tx-azul">Comidas <br> <span class="tx700">Por País </span></h2>
+          <p class="tx-cafe tx500">Lista de comidas típicas de diferentes países para probar y disfrutar.</p>
+          <ion-item>
+            <ion-label>Ingresa un país <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input [(ngModel)]="nombrePais" required></ion-input>
+          </ion-item>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="buscarRecetasPorPais()">Buscar</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button [routerLink]="['/seleccionar']">Volver</ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card-content *ngIf="recetas.length > 0; else noRecetasEncontradas">
+    <ion-list>
+      <ion-item *ngFor="let receta of recetas" class="ion-item-with-border">
+        <ion-thumbnail slot="start">
+          <img alt="receta.nombre" [src]="receta.url_imagen" class="recipe-image" />
+        </ion-thumbnail>
+        <a [routerLink]="['/detalle-receta', receta.id_receta]" class="recipe-link">
+          <div class="recipe-name-container">
+            <ion-label class="recipe-name">{{ receta.nombre }}</ion-label>
+          </div>
+        </a>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+  <div class="ion-text-center ion-padding-top">
+    <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
+    <ion-button class="redondeado" (click)="subir()">Subir</ion-button>
+  </div>
+  <ng-template #noRecetasEncontradas>
+    <p *ngIf="mostrarMensajeNoEncontrado">No se encontraron recetas para el país "{{ nombrePais }}".</p>
+  </ng-template>
+</ion-content>
