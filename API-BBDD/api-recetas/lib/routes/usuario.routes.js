@@ -280,7 +280,9 @@ const {
   editarUsuario,
   eliminarUsuario,
   obtenerTodo,
-  obtenerUnoSolo
+  obtenerUnoSolo,
+  validaCorreo,
+  actualizaPassword
 } = require('./../controllers/usuario.controller');
 const {
   TokenTrue
@@ -294,6 +296,8 @@ const router = Router();
 router.get('/', TokenTrue, obtenerTodo);
 router.get('/:id', TokenTrue, obtenerUnoSolo);
 router.post('/', [validadorUsuario], agregarUsuario);
+router.post('/password/', actualizaPassword);
+router.get('/correo/:correo', validaCorreo);
 router.put('/:id', TokenTrue, editarUsuario);
 router.delete('/:id', TokenTrue, eliminarUsuario);
 //  EXPORTA NUESTRA RUTA PARA NUESTRO INDEX.JS

@@ -5,8 +5,8 @@
     </ion-buttons>
     <ion-title>Ingresar</ion-title>
   </ion-toolbar>
-
 </ion-header>
+
 <ion-content padding class="background-image">
   <ion-card center>
     <ion-card-header>
@@ -23,16 +23,23 @@
       <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
         <ion-list>
           <ion-item>
-            <ion-label position="floating" aria-label="Correo"></ion-label>
-            <ion-input type="text" name="correo" ngModel required aria-label="Correo"></ion-input>
+            <ion-label position="floating" aria-label="Correo">Correo electrónico</ion-label>
+            <ion-input type="text" name="correo" ngModel required placeholder="Ingresa tu correo electrónico" aria-label="Correo"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="floating" aria-label="Contraseña"></ion-label>
-            <ion-input type="password" name="password" ngModel required aria-label="Contraseña"></ion-input>
+            <ion-label position="floating" aria-label="Contraseña">Contraseña</ion-label>
+            <ion-input type="password" name="password" ngModel required placeholder="Ingresa tu contraseña" aria-label="Contraseña"></ion-input>
           </ion-item>
         </ion-list>
-        <div padding>
-          <ion-button type="submit" [disabled]="!loginForm.valid" class="redondeado">Iniciar sesión</ion-button>
+        <div class="ion-padding">
+          <ion-row>
+            <ion-col size="6">
+              <ion-button type="submit" [disabled]="!loginForm.valid" class="redondeado" expand="block">Iniciar sesión</ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button [routerLink]="['/registro']" class="redondeado" expand="block">Registrarse</ion-button>
+            </ion-col>
+          </ion-row>
         </div>
       </form>
       <hr>
@@ -46,7 +53,7 @@
     </ion-card-content>
   </ion-card>
 
-  <div class="boton-centrado">
+  <div class="boton-centrado ion-padding-bottom">
     <ion-button class="redondeado center" [routerLink]="['/home']">regresar</ion-button>
   </div>
 </ion-content>

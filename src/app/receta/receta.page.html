@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nueva Receta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image">
+  <ion-card center>
+    <ion-card-header>
+      <b>Agregar Nueva Receta</b>
+    </ion-card-header>
+    <ion-card-content>
+      <form #recetaForm="ngForm" (ngSubmit)="agregarReceta(recetaForm)">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating" aria-label="Nombre">Nombre</ion-label>
+            <ion-input type="text" name="nombre" [(ngModel)]="receta.nombre" required placeholder="Ingresa el nombre de la receta" aria-label="Nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" aria-label="URL Imagen">URL de la imagen</ion-label>
+            <ion-input type="text" name="url_imagen" [(ngModel)]="receta.url_imagen" required placeholder="Ingresa la URL de la imagen" aria-label="URL Imagen"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" aria-label="Ingredientes">Ingredientes</ion-label>
+            <ion-textarea name="ingrediente" [(ngModel)]="receta.ingrediente" required placeholder="Ingresa los ingredientes" aria-label="Ingredientes"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" aria-label="Preparación">Preparación</ion-label>
+            <ion-textarea name="preparacion" [(ngModel)]="receta.preparacion" required placeholder="Ingresa la preparación" aria-label="Preparación"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label>Categoría</ion-label>
+            <ion-select name="id_cat" [(ngModel)]="receta.id_cat" required>
+              <!-- Aquí debes agregar las opciones de categoría -->
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>País</ion-label>
+            <ion-select name="id_pais" [(ngModel)]="receta.id_pais" required>
+              <!-- Aquí debes agregar las opciones de país -->
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Estado</ion-label>
+            <ion-select name="estado" [(ngModel)]="receta.estado" required>
+              <ion-select-option value="1">Activo</ion-select-option>
+              <ion-select-option value="0">Inactivo</ion-select-option>
+            </ion-select>
+          </ion-item>                                             
+        </ion-list>
+        <div padding>
+          <ion-button type="submit" [disabled]="!recetaForm.valid" class="redondeado" expand="block">Agregar Receta</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="boton-centrado ion-padding-bottom">
+    <ion-button class="redondeado center" [routerLink]="['/home']">Regresar</ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro de Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image">
+  <ion-card center>
+    <ion-card-header>
+      <b>Registro de Usuario</b>
+    </ion-card-header>
+    <ion-card-content>
+      <form #registroForm="ngForm" (ngSubmit)="crearUsuario(registroForm.value)">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating" aria-label="Nombre">Nombre</ion-label>
+            <ion-input type="text" name="nombre" ngModel required placeholder="Ingresa tu nombre" aria-label="Nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" aria-label="Apellido">Apellido</ion-label>
+            <ion-input type="text" name="apellido" ngModel required placeholder="Ingresa tu apellido" aria-label="Apellido"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" aria-label="Correo">Correo electrónico</ion-label>
+            <ion-input type="email" name="correo" ngModel required placeholder="Ingresa tu correo electrónico" aria-label="Correo"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" aria-label="Contraseña">Contraseña</ion-label>
+            <ion-input type="password" name="password" ngModel required placeholder="Ingresa tu contraseña" aria-label="Contraseña"></ion-input>
+          </ion-item>
+        </ion-list>
+        <div padding>
+          <ion-button type="submit" [disabled]="!registroForm.valid" class="redondeado">Registrarse</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="boton-centrado ion-padding-bottom">
+    <ion-button class="redondeado center" [routerLink]="['/home']">regresar</ion-button>
+  </div>
+</ion-content>

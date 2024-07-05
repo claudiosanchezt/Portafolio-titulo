@@ -2,6 +2,7 @@
 
 //  DECLARACION DE VARIABLES
 const database = require('./../database/database');
+const databasemy = require('./../config/basedatos');
 const {
   httpError
 } = require('../utils/error');
@@ -141,11 +142,65 @@ const eliminarUsuario = async (req, res) => {
     return httpError(res, "Ocurrio algo en DELETE Usuario");
   }
 };
+//  METODO PARA ACTUALIZAR CONTRASEÑA DEL USUARIO
+const actualizaPassword = async (req, res) => {
+  try {
+    const {
+      correo,
+      password
+    } = req.body;
+    // Obtener la conexión a la base de datos
+    const db = await database.getConnection();
+    const sql = `UPDATE usuario SET
+                    password = '${password}'
+                WHERE correo = '${correo}'`;
+    const [result] = await db.query(sql);
+    if (result.affectedRows) {
+      res.json({
+        "ok": true,
+        "msj": "Contraeña a sido modificada."
+      });
+    }
+    res.json({
+      "ok": false,
+      "msj": "Contraseña No a sido modificado"
+    });
+  } catch (error) {
+    return httpError(res, "Ocurrio algo en POST Actualizar Contraseña Usuario");
+  }
+};
+//  METODO PARA VALIDAR CORREO DEL USUARIO
+const validaCorreo = async (req, res) => {
+  try {
+    const {
+      correo
+    } = req.params;
+    // Obtener la conexión a la base de datos
+    const db = await database.getConnection();
+    const sql = `SELECT * FROM usuario WHERE correo = '${correo}';`;
+    const [rows] = await db.query(sql);
+    if (rows.length > 0) {
+      res.json({
+        ok: true,
+        msj: "Correo existe"
+      });
+    } else {
+      res.json({
+        ok: false,
+        msj: "Correo no existe"
+      });
+    }
+  } catch (error) {
+    return httpError(res, "Ocurrió un error al validar el correo", error);
+  }
+};
 //  EXPORTO MIS METODOS
 module.exports = {
   obtenerTodo,
   obtenerUnoSolo,
   agregarUsuario,
   editarUsuario,
-  eliminarUsuario
+  eliminarUsuario,
+  validaCorreo,
+  actualizaPassword
 };

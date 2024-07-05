@@ -10,7 +10,7 @@
     "start": "nodemon --exec npx babel-node lib/index.js",
     "build": "babel src -d lib",
     "install-deps": "npm install dotenv express express-validator jsonwebtoken mysql mysql2 axios fs node-cron transbank-sdk swagger-ui-express swagger-jsdoc jest supertest",
-    "postinstall": "npm run clean-cache && npm run install-deps"
+    "postinstall": "npm run install-deps"
   },
   "keywords": [],
   "author": " Johanna Hernandez - Patricio Quintanilla - Claudio Sanchez -  Italo Brignardello",
@@ -27,9 +27,9 @@
     "jsonwebtoken": "^9.0.2",
     "moment": "^2.30.1",
     "mysql": "^2.18.1",
-    "mysql2": "^3.10.0",
+    "mysql2": "^3.10.2",
     "node-cron": "^3.0.3",
-    "npm": "^10.8.0",
+    "npm": "^10.8.1",
     "promise-mysql": "^5.2.0",
     "python3": "^0.0.1",
     "sequelize": "^6.37.3",

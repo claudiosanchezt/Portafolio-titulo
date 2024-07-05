@@ -19,6 +19,11 @@ const routes: Routes = [
       import('./login/login.module').then((m) => m.LoginPageModule),
   },
   {
+    path: 'registro',
+    loadChildren: () =>
+      import('./registro/registro.module').then((m) => m.RegistroPageModule),
+  },
+  {
     path: 'seleccionar',
     loadChildren: () =>
       import('./seleccionar/seleccionar.module').then(
@@ -75,10 +80,14 @@ const routes: Routes = [
   {
     path: 'comidas-aleatorias',
     loadChildren: () =>
-      import('./comidas-aleatorias/comidas-aleatorias.module').then(
-        (m) => m.ComidasAleatoriasPageModule
+      import('./comidas-aleatorias/comidas-aleatorias.module').then((m) => m.ComidasAleatoriasPageModule
       ),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'receta',
+    loadChildren: () => import('./receta/receta.module').then((m) => m.RecetaPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

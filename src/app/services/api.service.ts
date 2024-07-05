@@ -11,7 +11,38 @@ const headers = new HttpHeaders({
   'Content-Type': 'application/json',
   'Authorization': `Bearer ${token}`
 });
-// APIS LOCALES FUNCIONALES
+// APIS CRUD RECETA
+@Injectable({
+  providedIn: 'root'
+})
+export class RecetaService {
+  private apiUrl = 'https://apirecetas.iacst.space/recetas';
+
+  constructor(private http: HttpClient) { }
+
+  agregarReceta(receta: any): Observable<any> {
+    return this.http.post(this.apiUrl, receta);
+  }
+
+  obtenerRecetas(): Observable<any> {
+    return this.http.get(this.apiUrl);
+  }
+
+  obtenerReceta(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get(url);
+  }
+
+  actualizarReceta(id: number, receta: any): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put(url, receta);
+  }
+
+  eliminarReceta(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url);
+  }
+}
 
 // módulo para obtener datos de categorías
 @Injectable({
@@ -173,5 +204,18 @@ export class UsuarioService {
       headers: headers
     };
     return this.http.get<any[]>(this.apiUrl, options);
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsuarioRegistroService {
+  private apiUrl = 'https://apirecetas.iacst.space/usuario/';
+
+  constructor(private http: HttpClient) { }
+
+  crearUsuario(nuevoUsuario: any): Observable<any> {
+    return this.http.post(this.apiUrl, nuevoUsuario);
   }
 }
