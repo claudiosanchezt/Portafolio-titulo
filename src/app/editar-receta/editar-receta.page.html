@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Receta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image">
+  <ion-card center>
+    <ion-card-header>
+      <b>Editar Receta</b>
+    </ion-card-header>
+    <ion-card-content>
+      <form #recetaForm="ngForm" (ngSubmit)="actualizarReceta(recetaForm)">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input type="text" name="nombre" [(ngModel)]="receta.nombre" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">URL de la imagen</ion-label>
+            <ion-input type="text" name="url_imagen" [(ngModel)]="receta.url_imagen" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Ingredientes</ion-label>
+            <ion-input type="text" name="ingrediente" [(ngModel)]="receta.ingrediente" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Preparación</ion-label>
+            <ion-input type="text" name="preparacion" [(ngModel)]="receta.preparacion" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Categoría</ion-label>
+            <ion-select name="id_cat" [(ngModel)]="receta.id_cat" required>
+              <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id_cat">{{ categoria.nombre }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>País</ion-label>
+            <ion-select name="id_pais" [(ngModel)]="receta.id_pais" required>
+              <ion-select-option *ngFor="let pais of paises" [value]="pais.id_pais">{{ pais.nombre }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-input type="hidden" name="id_usr" [(ngModel)]="receta.id_usr"></ion-input>
+          </ion-item>
+        </ion-list>
+        <div padding>
+          <ion-button type="submit" [disabled]="!recetaForm.valid" class="redondeado" expand="block">Actualizar Receta</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <div class="boton-centrado ion-padding-bottom">
+    <ion-button class="redondeado center" [routerLink]="['/seleccionar']">Regresar</ion-button>
+  </div>
+</ion-content>

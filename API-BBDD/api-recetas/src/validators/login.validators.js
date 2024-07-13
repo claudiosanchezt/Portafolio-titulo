@@ -5,11 +5,11 @@ const { httpError } = require('../utils/error');
 const validadorLogin = [
     check('correo')
         .exists().withMessage("Favor debe ir el atributo correo Ejemplo: correo@gmail.com")
-        .notEmpty().withMessage("Favor este campo debe venir con informacion")
+        .notEmpty().withMessage("Favor ingrese un correo valido")
         .isLength({ min: 5 }).withMessage("El minimo de caracteres son 5"),
     check('password')
         .exists().withMessage("Favor debe ir el atributo password")
-        .notEmpty().withMessage("Favor este campo debe venir con informacion")
+        .notEmpty().withMessage("Favor Ingrese una contraseña valida")
         .isLength({ min: 8, max: 16 }).withMessage("El minimo de caracteres son 8 y el maximo son 16"),
     (req, res, next) => {
         try {

@@ -67,6 +67,7 @@ const agregarUsuario = async (req, res) => {
     const sql = `INSERT INTO usuario( nombre, apellido, correo, password, activo,fecha_creacion)
                 VALUES('${nombre}', '${apellido}', '${correo}', '${password}', ${activo}, NOW())`;
     const result = await db.query(sql);
+    console.log(result);
     if (result[1] > 0) {
       return res.json({
         "ok": true,
@@ -79,7 +80,11 @@ const agregarUsuario = async (req, res) => {
       // "usuario": usuario
     });
   } catch (error) {
-    return httpError(res, "Ocurrio algo en POST Usuario", error);
+    console.error(error);
+    res.status(500).json({
+      "ok": false,
+      "msj": "Error al agregar usuario."
+    });
   }
 };
 //  METODO PARA EDITAR UNA USUARIO

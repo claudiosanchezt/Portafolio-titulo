@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../app/guards/auth.guard';
+import { RecuperarContrasenaPageModule } from './recuperar-contrasena/recuperar-contrasena.module';
+import { EditarUsuarioPageModule } from './editar-usuario/editar-usuario.module';
+import { PerfilUsuarioPageModule } from './perfil-usuario/perfil-usuario.module';
+
+
 
 const routes: Routes = [
   {
@@ -19,9 +24,25 @@ const routes: Routes = [
       import('./login/login.module').then((m) => m.LoginPageModule),
   },
   {
+    path: 'perfil-usuario/:id',
+    loadChildren: () => import('./perfil-usuario/perfil-usuario.module').then(m => m.PerfilUsuarioPageModule)
+  },
+  {
+    path: 'recuperar-contrasena',
+    loadChildren: () => import('./recuperar-contrasena/recuperar-contrasena.module').then(m => m.RecuperarContrasenaPageModule)
+  },
+  {
+    path: 'editar-receta/:id',
+    loadChildren: () => import('./editar-receta/editar-receta.module').then(m => m.EditarRecetaPageModule)
+  },
+  {
     path: 'registro',
     loadChildren: () =>
       import('./registro/registro.module').then((m) => m.RegistroPageModule),
+  },
+  {
+    path: 'editar-usuario/:id',
+    loadChildren: () => import('./editar-usuario/editar-usuario.module').then(m => m.EditarUsuarioPageModule)
   },
   {
     path: 'seleccionar',
@@ -92,6 +113,22 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'home',
+  },
+  {
+    path: 'recuperar-contrasena',
+    loadChildren: () => import('./recuperar-contrasena/recuperar-contrasena.module').then( m => m.RecuperarContrasenaPageModule)
+  },
+  {
+    path: 'editar-receta',
+    loadChildren: () => import('./editar-receta/editar-receta.module').then( m => m.EditarRecetaPageModule)
+  },
+  {
+    path: 'editar-usuario',
+    loadChildren: () => import('./editar-usuario/editar-usuario.module').then( m => m.EditarUsuarioPageModule)
+  },
+  {
+    path: 'perfil-usuario',
+    loadChildren: () => import('./perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
   },
 ];
 

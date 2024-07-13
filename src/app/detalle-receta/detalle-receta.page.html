@@ -46,6 +46,9 @@
               <h2>Preparación</h2>
             </strong>
             <p class="text-justify">{{ recetaItem.preparacion }}</p>
+            <div class="ion-text-center ion-padding-top">
+              <ion-button class="redondeado" [routerLink]="['/editar-receta', recetaItem.id_receta]">Modificar</ion-button>
+            </div>
           </ion-card-content>
         </ion-card>
       </ion-item>

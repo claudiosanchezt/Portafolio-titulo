@@ -36,6 +36,7 @@ export class DetalleRecetaPage implements OnInit {
       this.recetasIdService.getRecetasId(+idReceta).subscribe(
         (data) => {
           this.receta = data.data; // Asigna el arreglo dentro de data a receta
+          console.log(this.receta);
         },
         (error) => {
           console.error('Error al obtener los detalles de la receta:', error);

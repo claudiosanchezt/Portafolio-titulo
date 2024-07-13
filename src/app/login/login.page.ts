@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/user/auth.service';
 import { UsuarioService } from '../services/api.service';
 import { NgForm } from '@angular/forms';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 interface Usuario {
   nombre: string;
@@ -27,7 +28,8 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private usuarioService: UsuarioService,
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private jwtHelper: JwtHelperService
   ) {}
 
   ngOnInit() {
@@ -59,7 +61,10 @@ export class LoginPage implements OnInit {
 
       // Almacenar el token en el almacenamiento de sesión
       if (response.token) {
+        const decodedToken = this.jwtHelper.decodeToken(response.token);
         sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('userData', JSON.stringify(decodedToken.usuario));
+        sessionStorage.setItem('userId', JSON.stringify(decodedToken.usuario.id));
       }
 
       // Navegar a la página de selección

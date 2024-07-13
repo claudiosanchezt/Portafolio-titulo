@@ -7,7 +7,6 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content padding class="background-image ion-text-center ion-padding-top ion-margin-left ion-margin-right">
   <div class="ion-padding-top">
     <div class="seccion-user text-center">
@@ -17,7 +16,6 @@
       <ion-button class="redondeado" [routerLink]="['/seleccionar']">Volver</ion-button>
     </div>
   </div>
-
 
   <ion-col class="bg-cheems">
     <ion-list *ngIf="data && data.length > 0">
@@ -39,7 +37,6 @@
       <ion-button class="redondeado" (click)="subir()">Subir</ion-button>
     </div>
   </ion-col>
-
 
   <div *ngIf="data && data.length === 0" class="ion-padding">
     <p>No hay categorías disponibles.</p>

@@ -5,17 +5,17 @@ const { httpError } = require('./../utils/error');
 const validadorUsuario = [
     check('nombre')
         .exists().withMessage("Favor debe ir el atributo nombre")
-        .notEmpty().withMessage("Favor este campo debe venir con informacion"),
+        .notEmpty().withMessage("Favor Ingrese su Nombre"),
     check('apellido')
         .exists().withMessage("Favor debe ir el atributo apellido")
-        .notEmpty().withMessage("Favor este campo debe venir con informacion"),
+        .notEmpty().withMessage("Favor Ingrese su Apellido"),
     check('correo')
         .exists().withMessage("Favor debe ir el atributo correo Ejemplo: correo@gmail.com")
-        .notEmpty().withMessage("Favor este campo debe venir con informacion")
+        .notEmpty().withMessage("Favor ingresese su correo")
         .isLength({ min: 5 }).withMessage("El minimo de caracteres son 5"),
     check('password')
         .exists().withMessage("Favor debe ir el atributo password")
-        .notEmpty().withMessage("Favor este campo debe venir con informacion")
+        .notEmpty().withMessage("Favor ingresar una contraseña")
         .isLength({ min: 8, max: 16 }).withMessage("El minimo de caracteres son 8 y el maximo son 16"),
     check('activo')
         .exists().withMessage("Favor debe ir el atributo activo")

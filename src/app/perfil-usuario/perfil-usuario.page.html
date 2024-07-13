@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil de Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image">
+  <ion-card center>
+    <ion-card-header>
+      <b>Información del Usuario</b>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Nombre:</ion-label>
+          <ion-note>{{ usuario.nombre ? usuario.nombre : '' }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Apellido:</ion-label>
+          <ion-note>{{ usuario.apellido ? usuario.apellido : '' }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Correo:</ion-label>
+          <ion-note>{{ usuario.correo ? usuario.correo : '' }}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Activo:</ion-label>
+          <ion-note>{{ usuario.activo ? 'Sí' : 'No' }}</ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <div class="boton-centrado ion-padding-bottom">
+    <ion-button class="redondeado center" [routerLink]="['/editar-usuario', userId]">Editar Perfil</ion-button>
+    <ion-button class="redondeado center" [routerLink]="['/seleccionar']">Regresar</ion-button>
+  </div>
+</ion-content>

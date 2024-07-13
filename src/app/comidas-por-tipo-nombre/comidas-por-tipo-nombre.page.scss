@@ -1,0 +1,68 @@
+.boton-centrado {
+    text-align: center;
+    margin: 2rem 0px;
+  }
+  
+  .naranjo {
+    color: orangered;
+  }
+  
+  .background-image {
+    --background: url(../../assets/img/fondo_inicio.jpg) 0 0/100% 100% no-repeat;
+  }
+  
+  img.cheems-huaso {
+    width: 60% !important;
+    width: auto;
+    margin: auto;
+    display: block;
+  }
+  
+  .ion-item-with-border {
+    border-bottom: 1px solid #ccc;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .recipe-image {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recipe-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .recipe-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .recipe-name {
+    font-size: 1rem;
+    transition: transform 0.3s ease-in-out, font-size 0.3s ease-in-out;
+  }
+  
+  .ion-item-with-border:hover .recipe-name {
+    transform: scale(1.05);
+    font-size: 1.1rem;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
